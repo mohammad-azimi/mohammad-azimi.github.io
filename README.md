@@ -1,45 +1,16 @@
-Personal Portfolio Website
+# React + Vite
 
-Welcome to my Personal Portfolio Website project! This is my first fully developed project, and I built it using HTML, CSS, and JavaScript. I created this portfolio to showcase my skills, projects, and interests, as well as provide an easy way for others to connect with me.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-You can view the live version of the website here: https://mohammad-azimi.github.io/
+Currently, two official plugins are available:
 
-Project Overview
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-This website includes the following sections:
+## React Compiler
 
-Home: An introduction to who I am and my background.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-Skills: A list of technologies and tools I am familiar with.
+## Expanding the ESLint configuration
 
-Education: My academic background and qualifications.
-
-Experience: Work experience and internships I’ve been a part of.
-
-Achievements: Notable accomplishments, certifications, and recognitions.
-
-References: Professional references that can vouch for my skills and character.
-
-FAQ: Commonly asked questions about my work and how to reach me.
-
-Contact: A simple way to get in touch with me.
-
-Features
-
-Responsive design, ensuring the website works well on different screen sizes.
-
-Simple, modern, and clean UI.
-
-Interactive elements using JavaScript.
-
-Technologies Used
-
-HTML: To structure the content on the website.
-
-CSS: For styling and making the site visually appealing.
-
-JavaScript: To add interactivity and enhance user experience.
-
-Inspiration
-
-I built this project by learning from various YouTube tutorials and online resources, making changes and personalizing it as I went along. It was a great learning experience and a big step in my development journey.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

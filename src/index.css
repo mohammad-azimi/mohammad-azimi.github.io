@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  font-family: "Inter", Arial, sans-serif;
+  color: #f5f3ff;
+  background: #050508;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #050508;
+  color: #f5f3ff;
+  overflow-x: clip;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Space Grotesk", "Inter", sans-serif;
+  letter-spacing: -0.045em;
+}
+
+::selection {
+  background: rgba(139, 92, 246, 0.38);
+  color: #ffffff;
+}
+
+.page-bg {
+  background:
+    radial-gradient(circle at 74% 8%, rgba(109, 40, 217, 0.14), transparent 28%),
+    radial-gradient(circle at 88% 16%, rgba(37, 99, 235, 0.08), transparent 24%),
+    linear-gradient(180deg, #050508 0%, #07070c 100%);
+}
+
+.section-border {
+  border-top: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.glass-panel {
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  background: rgba(9, 9, 16, 0.68);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.grid-overlay {
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.07) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: radial-gradient(circle at 76% 40%, black 0%, transparent 55%);
+  -webkit-mask-image: radial-gradient(circle at 76% 40%, black 0%, transparent 55%);
+}
+
+.hero-gradient-text {
+  background: linear-gradient(100deg, #ffffff 6%, #c4b5fd 45%, #818cf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.purple-gradient-text {
+  background: linear-gradient(100deg, #c084fc, #818cf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.education-card {
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.featured-project {
+  border: 1px solid rgba(139, 92, 246, 0.18);
+  background:
+    radial-gradient(circle at 85% 20%, rgba(124, 58, 237, 0.11), transparent 34%),
+    rgba(9, 9, 16, 0.74);
+}
+
+.form-field {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.028);
+  padding: 1rem;
+  font-size: 0.875rem;
+  color: #f5f3ff;
+  outline: none;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.form-field::placeholder {
+  color: #71717a;
+}
+
+.form-field:focus {
+  border-color: rgba(139, 92, 246, 0.48);
+  background: rgba(139, 92, 246, 0.045);
+}
+
+@media (max-width: 768px) {
+  .grid-overlay {
+    mask-image: radial-gradient(circle at 53% 27%, black 0%, transparent 67%);
+    -webkit-mask-image: radial-gradient(circle at 53% 27%, black 0%, transparent 67%);
+  }
+}
+
+section[id] {
+  scroll-margin-top: 7rem;
+}
