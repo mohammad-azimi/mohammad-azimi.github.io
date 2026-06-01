@@ -181,6 +181,59 @@ export default function App() {
         transformOrigin: "top center",
       });
 
+      gsap.set(".path-active", {
+        strokeDasharray: 360,
+        strokeDashoffset: 360,
+        opacity: 0.14,
+      });
+
+      gsap.set([".route-signal", ".optimal-label", ".path-flow"], {
+        autoAlpha: 0,
+      });
+
+      gsap.to(".agent-glow", {
+        scale: 1.18,
+        opacity: 0.65,
+        duration: 2.4,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+
+      gsap.to(".agent-pulse", {
+        scale: 1.55,
+        opacity: 0,
+        duration: 2,
+        repeat: -1,
+        ease: "power1.out",
+      });
+
+      gsap.to(".ring-one", {
+        rotate: 360,
+        duration: 34,
+        repeat: -1,
+        ease: "none",
+      });
+
+      gsap.to(".ring-two", {
+        rotate: -360,
+        duration: 46,
+        repeat: -1,
+        ease: "none",
+      });
+
+      gsap.utils.toArray(".neural-dot").forEach((dot, index) => {
+        gsap.to(dot, {
+          x: index % 2 === 0 ? 9 : -9,
+          y: index % 3 === 0 ? -13 : 11,
+          opacity: 0.75,
+          duration: 2.1 + (index % 4) * 0.55,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+      });
+
       const heroTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: ".hero-scroll",
@@ -194,7 +247,26 @@ export default function App() {
         .to(".chapter-one", { autoAlpha: 0, y: -46, duration: 0.45 }, 0.18)
         .to(".rl-scene", { scale: 1.1, rotate: 4, duration: 0.8 }, 0.05)
         .to(".path-dim", { opacity: 0.16, duration: 0.5 }, 0.2)
-        .to(".path-active", { opacity: 1, duration: 0.55 }, 0.32)
+        .to(
+          ".path-active",
+          {
+            opacity: 1,
+            strokeDashoffset: 0,
+            duration: 0.78,
+          },
+          0.29,
+        )
+        .to(".route-signal", { autoAlpha: 1, duration: 0.2 }, 0.55)
+        .to(".path-flow", { autoAlpha: 1, duration: 0.25 }, 0.48)
+        .to(
+          ".optimal-label",
+          {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.35,
+          },
+          0.78,
+        )
         .to(".reward-node", { scale: 1.35, duration: 0.38 }, 0.42)
         .to(".chapter-two", { autoAlpha: 1, y: 0, duration: 0.5 }, 0.48)
         .to(".scroll-fill", { scaleY: 0.4, duration: 0.7 }, 0.1)
@@ -418,67 +490,143 @@ function HeroChapter({
 }
 
 function RLScene() {
-  return (
-    <div className="rl-scene absolute top-[21%] right-[-190px] h-[430px] w-[430px] opacity-40 sm:right-[-80px] sm:opacity-70 md:right-[-20px] lg:top-[25%] lg:right-[20px] lg:h-[500px] lg:w-[500px] lg:opacity-100">
-      <div className="absolute inset-[42px] rounded-full bg-violet-600/20 blur-[80px]" />
-      <div className="absolute inset-0 rounded-full border border-violet-400/[0.08]" />
-      <div className="absolute inset-[30px] rounded-full border border-blue-400/[0.08]" />
-      <div className="absolute inset-[72px] rounded-full border border-violet-400/[0.1]" />
+  const neuralDots = [
+    { x: 18, y: 20, size: 5, opacity: 0.46 },
+    { x: 31, y: 12, size: 3, opacity: 0.34 },
+    { x: 46, y: 19, size: 4, opacity: 0.55 },
+    { x: 71, y: 15, size: 4, opacity: 0.4 },
+    { x: 84, y: 27, size: 3, opacity: 0.5 },
+    { x: 11, y: 46, size: 3, opacity: 0.3 },
+    { x: 88, y: 50, size: 5, opacity: 0.42 },
+    { x: 15, y: 73, size: 4, opacity: 0.48 },
+    { x: 35, y: 84, size: 3, opacity: 0.32 },
+    { x: 63, y: 87, size: 4, opacity: 0.46 },
+    { x: 84, y: 76, size: 3, opacity: 0.4 },
+    { x: 52, y: 8, size: 3, opacity: 0.38 },
+  ];
 
-      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 500 500">
-        <path
-          className="path-dim"
-          d="M250 258 C190 205 135 150 93 102"
-          fill="none"
-          stroke="rgba(139,92,246,0.65)"
-          strokeWidth="2"
-          strokeDasharray="5 10"
-        />
-        <path
-          className="path-dim"
-          d="M250 258 C177 278 116 320 78 386"
-          fill="none"
-          stroke="rgba(96,165,250,0.55)"
-          strokeWidth="2"
-          strokeDasharray="5 10"
-        />
-        <path
-          className="path-active"
-          d="M250 258 C302 204 354 168 418 110"
-          fill="none"
-          stroke="url(#activePath)"
-          strokeWidth="3"
-          strokeDasharray="7 8"
-          opacity="0.3"
-        />
-        <path
-          className="path-dim"
-          d="M250 258 C320 286 377 329 424 392"
-          fill="none"
-          stroke="rgba(139,92,246,0.55)"
-          strokeWidth="2"
-          strokeDasharray="5 10"
-        />
+  return (
+    <div className="rl-scene absolute top-[21%] right-[-190px] h-[430px] w-[430px] opacity-40 sm:right-[-80px] sm:opacity-70 md:right-[-20px] lg:top-[24%] lg:right-[6px] lg:h-[535px] lg:w-[535px] lg:opacity-100">
+      <div className="agent-glow absolute inset-[110px] rounded-full bg-violet-600/30 blur-[86px]" />
+
+      <div className="ring-one absolute inset-[14px] rounded-full border border-violet-400/[0.09]">
+        <span className="absolute left-[23%] top-[-4px] h-2 w-2 rounded-full bg-violet-300 shadow-[0_0_16px_rgba(196,181,253,0.75)]" />
+      </div>
+
+      <div className="ring-two absolute inset-[47px] rounded-full border border-blue-400/[0.09]">
+        <span className="absolute bottom-[18%] right-[3px] h-1.5 w-1.5 rounded-full bg-blue-300 shadow-[0_0_14px_rgba(96,165,250,0.8)]" />
+      </div>
+
+      <div className="absolute inset-[84px] rounded-full border border-violet-400/[0.1]" />
+
+      <div className="pointer-events-none absolute inset-0">
+        {neuralDots.map((dot, index) => (
+          <span
+            key={index}
+            className="neural-dot absolute rounded-full bg-violet-300"
+            style={{
+              left: `${dot.x}%`,
+              top: `${dot.y}%`,
+              width: `${dot.size}px`,
+              height: `${dot.size}px`,
+              opacity: dot.opacity,
+            }}
+          />
+        ))}
+      </div>
+
+      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 535 535">
         <defs>
-          <linearGradient id="activePath" x1="250" y1="258" x2="418" y2="110">
+          <linearGradient id="activeRoute" x1="267" y1="268" x2="432" y2="110">
             <stop stopColor="#8b5cf6" />
+            <stop offset="0.48" stopColor="#a78bfa" />
             <stop offset="1" stopColor="#60a5fa" />
           </linearGradient>
+
+          <filter id="softGlow">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
         </defs>
+
+        <path
+          className="path-dim"
+          d="M267 268 C208 215 153 172 103 112"
+          fill="none"
+          stroke="rgba(167,139,250,0.45)"
+          strokeWidth="2"
+          strokeDasharray="4 11"
+        />
+
+        <path
+          className="path-dim"
+          d="M267 268 C200 290 144 339 93 408"
+          fill="none"
+          stroke="rgba(96,165,250,0.36)"
+          strokeWidth="2"
+          strokeDasharray="4 11"
+        />
+
+        <path
+          className="path-dim"
+          d="M267 268 C336 294 389 344 438 406"
+          fill="none"
+          stroke="rgba(167,139,250,0.38)"
+          strokeWidth="2"
+          strokeDasharray="4 11"
+        />
+
+        <path
+          className="path-active"
+          d="M267 268 C316 218 376 170 432 110"
+          fill="none"
+          stroke="url(#activeRoute)"
+          strokeWidth="3"
+          filter="url(#softGlow)"
+        />
+
+        <path
+          className="path-flow"
+          d="M267 268 C316 218 376 170 432 110"
+          fill="none"
+          stroke="rgba(221,214,254,0.95)"
+          strokeWidth="2"
+        />
+
+        <g className="route-signal">
+          <circle r="5" fill="#ddd6fe" filter="url(#softGlow)">
+            <animateMotion
+              dur="2.1s"
+              repeatCount="indefinite"
+              path="M267 268 C316 218 376 170 432 110"
+            />
+          </circle>
+        </g>
       </svg>
 
-      <SceneNode className="left-[62px] top-[73px]" text="State" />
-      <SceneNode className="left-[45px] bottom-[80px]" text="Action" />
-      <SceneNode className="right-[42px] bottom-[78px]" text="Explore" />
+      <SceneNode className="left-[63px] top-[78px]" text="STATE" />
+      <SceneNode className="left-[47px] bottom-[86px]" text="ACTION" />
+      <SceneNode className="right-[44px] bottom-[84px]" text="ENV" />
 
-      <div className="reward-node absolute right-[46px] top-[70px] flex h-[78px] w-[78px] items-center justify-center rounded-2xl border border-blue-400/30 bg-blue-400/10 text-[11px] font-semibold tracking-[0.16em] text-blue-200 shadow-[0_0_38px_rgba(59,130,246,0.25)]">
+      <div className="reward-node absolute right-[43px] top-[66px] flex h-[84px] w-[84px] items-center justify-center rounded-[22px] border border-blue-400/35 bg-blue-400/[0.1] text-[11px] font-semibold tracking-[0.19em] text-blue-100 shadow-[0_0_40px_rgba(59,130,246,0.2)]">
         REWARD
       </div>
 
-      <div className="agent-node glass-panel absolute left-1/2 top-1/2 flex h-[108px] w-[108px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-[28px] border-violet-400/20 shadow-[0_0_54px_rgba(124,58,237,0.2)]">
+      <div className="optimal-label invisible absolute right-[32px] top-[157px] rounded-full border border-violet-400/20 bg-violet-500/10 px-3 py-2 text-[9px] font-semibold tracking-[0.18em] text-violet-200 opacity-0">
+        OPTIMAL POLICY
+      </div>
+
+      <div className="agent-node glass-panel absolute left-1/2 top-1/2 flex h-[112px] w-[112px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-[29px] border-violet-400/25 shadow-[0_0_60px_rgba(124,58,237,0.22)]">
+        <div className="agent-pulse pointer-events-none absolute inset-0 rounded-[29px] border border-violet-400/35" />
         <Sparkles size={22} className="text-violet-300" />
-        <span className="mt-2 text-xs font-semibold tracking-[0.18em] text-violet-200">
+        <span className="mt-2 text-[11px] font-semibold tracking-[0.2em] text-violet-100">
           AGENT
+        </span>
+        <span className="mt-1 text-[9px] tracking-[0.13em] text-zinc-500">
+          π(a|s)
         </span>
       </div>
     </div>
@@ -488,7 +636,7 @@ function RLScene() {
 function SceneNode({ className, text }) {
   return (
     <div
-      className={`${className} path-dim absolute flex h-[72px] w-[72px] items-center justify-center rounded-2xl border border-white/[0.09] bg-white/[0.035] text-[10px] font-medium tracking-[0.14em] text-zinc-400`}
+      className={`${className} path-dim absolute flex h-[76px] w-[76px] items-center justify-center rounded-[20px] border border-white/[0.09] bg-white/[0.028] text-[10px] font-semibold tracking-[0.16em] text-zinc-400 backdrop-blur-md`}
     >
       {text}
     </div>

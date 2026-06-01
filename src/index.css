@@ -123,6 +123,34 @@ h3 {
   background: rgba(139, 92, 246, 0.045);
 }
 
+.rl-scene {
+  transform-style: preserve-3d;
+}
+
+.neural-dot {
+  box-shadow:
+    0 0 12px rgba(167, 139, 250, 0.8),
+    0 0 26px rgba(124, 58, 237, 0.32);
+}
+
+.path-flow {
+  opacity: 0.72;
+  stroke-dasharray: 5 17;
+  animation: route-flow 1.15s linear infinite;
+}
+
+.agent-node {
+  background:
+    radial-gradient(circle at 50% 38%, rgba(139, 92, 246, 0.16), transparent 62%),
+    rgba(9, 9, 16, 0.76);
+}
+
+@keyframes route-flow {
+  to {
+    stroke-dashoffset: -44;
+  }
+}
+
 @media (max-width: 768px) {
   .grid-overlay {
     mask-image: radial-gradient(circle at 53% 27%, black 0%, transparent 67%);
