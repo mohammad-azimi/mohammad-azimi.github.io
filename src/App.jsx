@@ -392,6 +392,44 @@ export default function App() {
         },
       });
 
+      gsap.from(".project-copy", {
+        x: -34,
+        autoAlpha: 0,
+        duration: 0.82,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".featured-showcase",
+          start: "top 74%",
+          once: true,
+        },
+      });
+
+      gsap.from(".project-visual", {
+        x: 52,
+        y: 18,
+        autoAlpha: 0,
+        duration: 0.92,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".featured-showcase",
+          start: "top 74%",
+          once: true,
+        },
+      });
+
+      gsap.from(".project-feature", {
+        y: 22,
+        autoAlpha: 0,
+        duration: 0.62,
+        stagger: 0.13,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".project-features",
+          start: "top 83%",
+          once: true,
+        },
+      });
+
       gsap.utils.toArray(".reveal-section").forEach((section) => {
         gsap.from(section, {
           y: 55,
@@ -1128,12 +1166,27 @@ function AchievementsSection() {
 }
 
 function ProjectsSection() {
+  const projectFeatures = [
+    {
+      title: "Daily Tracking",
+      description: "Mark habits complete and maintain consistent routines.",
+    },
+    {
+      title: "Progress Analytics",
+      description: "Monitor daily performance through a clean dashboard.",
+    },
+    {
+      title: "Push Reminders",
+      description: "Receive scheduled reminders through PWA notifications.",
+    },
+  ];
+
   return (
     <section
       id="projects"
       className="section-border px-6 py-24 sm:px-8 lg:py-32"
     >
-      <div className="reveal-section mx-auto max-w-6xl">
+      <div className="mx-auto max-w-6xl">
         <SectionHeading
           eyebrow="PROJECTS"
           title={
@@ -1145,111 +1198,135 @@ function ProjectsSection() {
           description="Practical projects that represent my current development skills while I continue growing into AI and Reinforcement Learning."
         />
 
-        <div className="mt-14 space-y-6">
-          {projects.map((project) => (
-            <article
-              key={project.title}
-              className={`grid overflow-hidden rounded-3xl p-6 sm:p-8 ${
-                project.featured
-                  ? "featured-project lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-12"
-                  : "glass-panel"
-              }`}
-            >
-              <div>
-                <p className="text-xs font-semibold tracking-[0.17em] text-violet-300">
-                  {project.type}
-                </p>
-                <h3 className="mt-4 text-3xl font-semibold">{project.title}</h3>
-                <p className="mt-5 max-w-lg text-sm leading-7 text-zinc-400 sm:text-base">
-                  {project.description}
-                </p>
+        <article className="featured-showcase mt-14 overflow-hidden rounded-[32px] border border-violet-400/15 bg-[#090910] p-6 sm:p-8 lg:p-10">
+          <div className="grid gap-12 lg:grid-cols-[0.77fr_1.23fr] lg:items-center">
+            <div className="project-copy">
+              <p className="text-xs font-semibold tracking-[0.18em] text-violet-300">
+                FEATURED PROJECT
+              </p>
 
-                <div className="mt-7 flex flex-wrap gap-2">
-                  {project.technologies.map((technology) => (
-                    <span
-                      key={technology}
-                      className="rounded-full border border-white/[0.08] bg-white/[0.035] px-3 py-2 text-xs text-zinc-400"
-                    >
-                      {technology}
-                    </span>
-                  ))}
-                </div>
+              <h3 className="mt-5 text-4xl font-semibold">
+                Habit <span className="purple-gradient-text">Tracker</span>
+              </h3>
 
-                <div className="mt-8 flex flex-wrap gap-3">
-                  {project.live && (
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-zinc-200"
-                    >
-                      Live Demo
-                      <ExternalLink size={15} />
-                    </a>
-                  )}
+              <p className="mt-6 text-base leading-8 text-zinc-400">
+                A modern habit tracking application designed to help users build
+                consistency through daily check-ins, progress monitoring and
+                reminder notifications.
+              </p>
 
-                  <a
-                    href={project.code}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm text-zinc-200 transition hover:border-violet-400/40"
+              <div className="mt-7 flex flex-wrap gap-2">
+                {[
+                  "React",
+                  "Vite",
+                  "Tailwind CSS",
+                  "PWA",
+                  "Push Notifications",
+                ].map((technology) => (
+                  <span
+                    key={technology}
+                    className="rounded-full border border-white/[0.08] bg-white/[0.035] px-3 py-2 text-xs text-zinc-400"
                   >
-                    <GitBranch size={16} />
-                    GitHub
-                  </a>
-                </div>
+                    {technology}
+                  </span>
+                ))}
               </div>
 
-              {project.featured && <DashboardPreview />}
-            </article>
-          ))}
+              <div className="mt-9 flex flex-wrap gap-3">
+                <a
+                  href="https://mohammad-azimi.github.io/Habit-Tracker/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-zinc-200"
+                >
+                  Live Demo
+                  <ExternalLink size={15} />
+                </a>
+
+                <a
+                  href="https://github.com/mohammad-azimi/Habit-Tracker"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm text-zinc-200 transition hover:border-violet-400/40"
+                >
+                  <GitBranch size={16} />
+                  GitHub
+                </a>
+              </div>
+            </div>
+
+            <ProjectVisual />
+          </div>
+
+          <div className="project-features mt-10 grid gap-4 border-t border-white/[0.06] pt-8 md:grid-cols-3">
+            {projectFeatures.map((feature, index) => (
+              <div
+                key={feature.title}
+                className="project-feature rounded-2xl border border-white/[0.07] bg-white/[0.025] p-5"
+              >
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-500/10 text-xs font-semibold text-violet-300">
+                  0{index + 1}
+                </div>
+
+                <h4 className="mt-5 text-base font-semibold text-white">
+                  {feature.title}
+                </h4>
+
+                <p className="mt-3 text-sm leading-6 text-zinc-500">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </article>
+
+        <div className="mt-6 rounded-3xl border border-dashed border-white/[0.09] bg-white/[0.015] px-7 py-8">
+          <p className="text-xs font-semibold tracking-[0.18em] text-violet-300">
+            NEXT PROJECT
+          </p>
+          <h3 className="mt-4 text-2xl font-semibold">
+            Reinforcement Learning Project
+          </h3>
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-zinc-500">
+            A future project space for practical experimentation with agents,
+            environments, policies and rewards.
+          </p>
         </div>
       </div>
     </section>
   );
 }
 
-function DashboardPreview() {
+function ProjectVisual() {
   return (
-    <div className="mt-12 rounded-[26px] border border-white/[0.08] bg-[#080811] p-3 sm:p-5 lg:mt-0">
-      <div className="rounded-[19px] border border-white/[0.07] bg-[#0b0b14] p-4 sm:p-6">
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex gap-2">
-            <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-            <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-            <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+    <div className="project-visual relative">
+      <div className="project-light pointer-events-none absolute left-1/2 top-1/2 h-[300px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-600/20 blur-[90px]" />
+
+      <div className="relative overflow-hidden rounded-[26px] border border-white/[0.1] bg-[#080810] p-3 shadow-[0_25px_90px_rgba(0,0,0,0.38)] sm:p-4">
+        <div className="mb-3 flex items-center gap-2 px-2 py-1">
+          <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+          <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+          <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+
+          <div className="ml-4 flex-1 rounded-lg border border-white/[0.05] bg-white/[0.025] px-4 py-2 text-center text-[11px] text-zinc-600">
+            Habit Tracker Dashboard
           </div>
-          <span className="text-xs text-zinc-600">Habit Tracker Dashboard</span>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-[0.32fr_0.68fr]">
-          <div className="space-y-3 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-3">
-            <div className="h-8 rounded-lg bg-violet-500/15" />
-            <div className="h-7 rounded-lg bg-white/[0.04]" />
-            <div className="h-7 rounded-lg bg-white/[0.04]" />
-            <div className="h-7 rounded-lg bg-white/[0.04]" />
-          </div>
+        <div className="overflow-hidden rounded-[18px] border border-white/[0.06] bg-[#0b0b14]">
+          <img
+            src="/projects/habit-tracker/dashboard.png"
+            alt="Habit Tracker dashboard interface"
+            className="block w-full object-cover"
+          />
+        </div>
 
-          <div className="space-y-4">
-            <div className="grid grid-cols-3 gap-3">
-              {[1, 2, 3].map((item) => (
-                <div
-                  key={item}
-                  className="h-16 rounded-xl border border-white/[0.06] bg-white/[0.025]"
-                />
-              ))}
-            </div>
-
-            <div className="flex h-40 items-end gap-3 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-4">
-              {[38, 66, 48, 86, 58, 94, 72].map((height, index) => (
-                <div
-                  key={index}
-                  className="flex-1 rounded-t-md bg-gradient-to-t from-violet-600/50 to-violet-400"
-                  style={{ height: `${height}%` }}
-                />
-              ))}
-            </div>
-          </div>
+        <div className="absolute bottom-7 right-7 hidden w-[36%] overflow-hidden rounded-xl border border-white/[0.12] bg-[#0b0b14] p-1.5 shadow-2xl sm:block">
+          <img
+            src="/projects/habit-tracker/feature.png"
+            alt="Habit Tracker feature preview"
+            className="block w-full rounded-lg object-cover"
+          />
         </div>
       </div>
     </div>
