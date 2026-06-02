@@ -215,13 +215,27 @@ h3 {
   }
 }
 
+.mobile-menu {
+  max-height: 0;
+  opacity: 0;
+  transition:
+    max-height 280ms ease,
+    opacity 220ms ease,
+    border-color 220ms ease;
+}
+
+.mobile-menu-open {
+  max-height: 31rem;
+  opacity: 1;
+}
+
+section[id] {
+  scroll-margin-top: 7rem;
+}
+
 @media (max-width: 768px) {
   .grid-overlay {
     mask-image: radial-gradient(circle at 53% 27%, black 0%, transparent 67%);
     -webkit-mask-image: radial-gradient(circle at 53% 27%, black 0%, transparent 67%);
   }
-}
-
-section[id] {
-  scroll-margin-top: 7rem;
 }

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowDown,
   ArrowRight,
@@ -11,6 +11,8 @@ import {
   Languages,
   Mail,
   Sparkles,
+  Menu,
+  X,
 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -549,6 +551,8 @@ export default function App() {
 }
 
 function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const links = [
     { name: "About", href: "#about" },
     { name: "Skills", href: "#skills" },
@@ -559,36 +563,106 @@ function Header() {
     { name: "Contact", href: "#contact" },
   ];
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <header className="fixed top-0 right-0 left-0 z-50 px-4 pt-4 sm:px-8 sm:pt-5">
-      <nav className="glass-panel mx-auto flex max-w-6xl items-center justify-between rounded-2xl px-5 py-4">
-        <a href="#" className="text-xl font-bold tracking-[-0.08em]">
-          <span className="text-white">M</span>
-          <span className="text-violet-400">A</span>
-        </a>
+      <nav className="glass-panel mx-auto max-w-6xl rounded-2xl">
+        <div className="flex items-center justify-between px-5 py-4">
+          <a
+            href="#"
+            onClick={closeMenu}
+            className="text-xl font-bold tracking-[-0.08em]"
+          >
+            <span className="text-white">M</span>
+            <span className="text-violet-400">A</span>
+          </a>
 
-        <div className="hidden items-center gap-5 text-sm text-zinc-400 lg:flex">
-          {links.map((link) => (
+          <div className="hidden items-center gap-5 text-sm text-zinc-400 lg:flex">
+            {links.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="transition hover:text-white"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-3">
             <a
-              key={link.name}
-              href={link.href}
-              className="transition hover:text-white"
+              href="https://github.com/mohammad-azimi"
+              target="_blank"
+              rel="noreferrer"
+              className="hidden items-center gap-2 rounded-xl border border-white/10 px-4 py-2 text-sm text-zinc-300 transition hover:border-violet-400/40 hover:text-white sm:flex"
             >
-              {link.name}
+              <GitBranch size={16} />
+              GitHub
             </a>
-          ))}
+
+            <button
+              type="button"
+              aria-label={
+                menuOpen ? "Close navigation menu" : "Open navigation menu"
+              }
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((current) => !current)}
+              className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-zinc-300 transition hover:border-violet-400/40 hover:text-white lg:hidden"
+            >
+              {menuOpen ? <X size={19} /> : <Menu size={19} />}
+            </button>
+          </div>
         </div>
 
-        <a
-          href="https://github.com/mohammad-azimi"
-          target="_blank"
-          rel="noreferrer"
-          className="flex items-center gap-2 rounded-xl border border-white/10 px-4 py-2 text-sm text-zinc-300 transition hover:border-violet-400/40 hover:text-white"
+        <div
+          className={`mobile-menu overflow-hidden border-white/[0.06] lg:hidden ${
+            menuOpen ? "mobile-menu-open border-t" : ""
+          }`}
         >
-          <GitBranch size={16} />
-          <span className="hidden sm:inline">GitHub</span>
-        </a>
+          <div className="space-y-1 px-4 pb-4 pt-3">
+            {links.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={closeMenu}
+                className="flex items-center justify-between rounded-xl px-4 py-3 text-sm text-zinc-400 transition hover:bg-white/[0.04] hover:text-white"
+              >
+                {link.name}
+                <ArrowRight size={14} className="text-zinc-600" />
+              </a>
+            ))}
+
+            <a
+              href="https://github.com/mohammad-azimi"
+              target="_blank"
+              rel="noreferrer"
+              onClick={closeMenu}
+              className="mt-3 flex items-center justify-center gap-2 rounded-xl bg-violet-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-violet-500 sm:hidden"
+            >
+              <GitBranch size={16} />
+              GitHub
+            </a>
+          </div>
+        </div>
       </nav>
+
+      {menuOpen && (
+        <button
+          type="button"
+          aria-label="Close navigation overlay"
+          onClick={closeMenu}
+          className="fixed inset-0 -z-10 bg-black/45 backdrop-blur-[2px] lg:hidden"
+        />
+      )}
     </header>
   );
 }
@@ -656,7 +730,7 @@ function RLScene() {
   ];
 
   return (
-    <div className="rl-scene absolute top-[21%] right-[-190px] h-[430px] w-[430px] opacity-40 sm:right-[-80px] sm:opacity-70 md:right-[-20px] lg:top-[24%] lg:right-[6px] lg:h-[535px] lg:w-[535px] lg:opacity-100">
+    <div className="rl-scene absolute top-[49%] right-[-190px] h-[390px] w-[390px] opacity-25 sm:top-[28%] sm:right-[-80px] sm:h-[430px] sm:w-[430px] sm:opacity-55 md:right-[-20px] md:opacity-70 lg:top-[24%] lg:right-[6px] lg:h-[535px] lg:w-[535px] lg:opacity-100">
       <div className="agent-glow absolute inset-[110px] rounded-full bg-violet-600/30 blur-[86px]" />
 
       <div className="ring-one absolute inset-[14px] rounded-full border border-violet-400/[0.09]">
