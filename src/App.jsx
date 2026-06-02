@@ -6,7 +6,6 @@ import {
   Briefcase,
   Code2,
   ExternalLink,
-  GitBranch,
   GraduationCap,
   Languages,
   Mail,
@@ -14,6 +13,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -161,6 +161,12 @@ const projects = [
     featured: true,
   },
 ];
+
+const publicLinks = {
+  email: "mohammadazimi1011@gmail.com",
+  github: "https://github.com/mohammad-azimi",
+  linkedin: "https://www.linkedin.com/in/-mohammad--azimi-/",
+};
 
 export default function App() {
   const pageRef = useRef(null);
@@ -600,12 +606,12 @@ function Header() {
 
           <div className="flex items-center gap-3">
             <a
-              href="https://github.com/mohammad-azimi"
+              href={publicLinks.github}
               target="_blank"
               rel="noreferrer"
               className="hidden items-center gap-2 rounded-xl border border-white/10 px-4 py-2 text-sm text-zinc-300 transition hover:border-violet-400/40 hover:text-white sm:flex"
             >
-              <GitBranch size={16} />
+              <FaGithub size={16} />
               GitHub
             </a>
 
@@ -642,13 +648,13 @@ function Header() {
             ))}
 
             <a
-              href="https://github.com/mohammad-azimi"
+              href={publicLinks.github}
               target="_blank"
               rel="noreferrer"
               onClick={closeMenu}
               className="mt-3 flex items-center justify-center gap-2 rounded-xl bg-violet-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-violet-500 sm:hidden"
             >
-              <GitBranch size={16} />
+              <FaGithub size={16} />
               GitHub
             </a>
           </div>
@@ -1323,7 +1329,7 @@ function ProjectsSection() {
                   rel="noreferrer"
                   className="flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm text-zinc-200 transition hover:border-violet-400/40"
                 >
-                  <GitBranch size={16} />
+                  <FaGithub size={16} />
                   GitHub
                 </a>
               </div>
@@ -1408,6 +1414,48 @@ function ProjectVisual() {
 }
 
 function ContactSection() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [formStatus, setFormStatus] = useState("");
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormData((current) => ({
+      ...current,
+      [name]: value,
+    }));
+
+    setFormStatus("");
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const message = formData.message.trim();
+
+    if (!name || !email || !message) {
+      setFormStatus("Please complete all fields before sending.");
+      return;
+    }
+
+    const subject = encodeURIComponent(`Portfolio message from ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+    );
+
+    window.location.href = `mailto:${publicLinks.email}?subject=${subject}&body=${body}`;
+
+    setFormStatus(
+      "Your email application should open with the message prepared.",
+    );
+  };
+
   return (
     <section
       id="contact"
@@ -1419,58 +1467,127 @@ function ContactSection() {
             eyebrow="CONTACT"
             title={
               <>
-                Let's build something{" "}
+                Let&apos;s build something{" "}
                 <span className="purple-gradient-text">meaningful.</span>
               </>
             }
           />
+
           <p className="mt-7 max-w-md text-base leading-7 text-zinc-400">
             Open to connecting about projects, learning opportunities and
             conversations around intelligent systems.
           </p>
 
-          <a
-            href="mailto:mohammad.azimi.dev@gmail.com"
-            className="glass-panel mt-9 flex max-w-sm items-center gap-4 rounded-2xl p-4 transition hover:border-violet-400/30"
-          >
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-500/10 text-violet-300">
-              <Mail size={19} />
-            </div>
-            <div>
-              <p className="text-xs text-zinc-500">Email Me</p>
-              <p className="mt-1 text-sm text-zinc-200">
-                mohammad.azimi.dev@gmail.com
-              </p>
-            </div>
-          </a>
+          <div className="mt-9 space-y-3">
+            <ContactCard
+              href={`mailto:${publicLinks.email}`}
+              icon={<Mail size={19} />}
+              label="Email Me"
+              value={publicLinks.email}
+            />
+
+            <ContactCard
+              href={publicLinks.github}
+              icon={<FaGithub size={19} />}
+              label="GitHub"
+              value="@mohammad-azimi"
+              external
+            />
+
+            {publicLinks.linkedin && (
+              <ContactCard
+                href={publicLinks.linkedin}
+                icon={<FaLinkedinIn size={19} />}
+                label="LinkedIn"
+                value="Connect with me"
+                external
+              />
+            )}
+          </div>
         </div>
 
-        <form className="glass-panel rounded-3xl p-6 sm:p-8">
+        <form
+          onSubmit={handleSubmit}
+          className="glass-panel rounded-3xl p-6 sm:p-8"
+        >
           <div className="grid gap-4 sm:grid-cols-2">
-            <input className="form-field" type="text" placeholder="Your Name" />
+            <input
+              className="form-field"
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Your Name"
+              autoComplete="name"
+              required
+            />
+
             <input
               className="form-field"
               type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
               placeholder="Your Email"
+              autoComplete="email"
+              required
             />
           </div>
+
           <textarea
             className="form-field mt-4 min-h-40 resize-none"
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
             placeholder="Your Message"
+            required
           />
+
           <button
-            type="button"
+            type="submit"
             className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-violet-600 px-5 py-4 text-sm font-semibold transition hover:bg-violet-500"
           >
-            Send Message
+            Prepare Email
             <ArrowRight size={16} />
           </button>
-          <p className="mt-4 text-xs text-zinc-600">
-            Form submission functionality will be connected later.
+
+          <p
+            aria-live="polite"
+            className={`mt-4 min-h-5 text-xs ${
+              formStatus ? "text-violet-300" : "text-zinc-600"
+            }`}
+          >
+            {formStatus ||
+              "Your message will be prepared in your email application."}
           </p>
         </form>
       </div>
     </section>
+  );
+}
+
+function ContactCard({ href, icon, label, value, external = false }) {
+  return (
+    <a
+      href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noreferrer" : undefined}
+      className="glass-panel group flex max-w-sm items-center gap-4 rounded-2xl p-4 transition hover:border-violet-400/30 hover:bg-violet-500/[0.04]"
+    >
+      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet-500/10 text-violet-300 transition group-hover:bg-violet-500/15">
+        {icon}
+      </div>
+
+      <div className="min-w-0">
+        <p className="text-xs text-zinc-500">{label}</p>
+        <p className="mt-1 truncate text-sm text-zinc-200">{value}</p>
+      </div>
+
+      <ExternalLink
+        size={14}
+        className="ml-auto text-zinc-600 transition group-hover:text-violet-300"
+      />
+    </a>
   );
 }
 
