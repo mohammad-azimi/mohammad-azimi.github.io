@@ -233,6 +233,16 @@ section[id] {
   scroll-margin-top: 7rem;
 }
 
+.page-progress {
+  box-shadow:
+    0 0 11px rgba(139, 92, 246, 0.75),
+    0 0 22px rgba(96, 165, 250, 0.35);
+}
+
+.nav-link {
+  letter-spacing: -0.01em;
+}
+
 @media (max-width: 768px) {
   .grid-overlay {
     mask-image: radial-gradient(circle at 53% 27%, black 0%, transparent 67%);

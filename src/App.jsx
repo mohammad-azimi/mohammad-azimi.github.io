@@ -179,6 +179,22 @@ export default function App() {
 
       if (reducedMotion) return;
 
+      gsap.set(".page-progress", {
+        scaleX: 0,
+        transformOrigin: "left center",
+      });
+
+      gsap.to(".page-progress", {
+        scaleX: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: pageRef.current,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: true,
+        },
+      });
+
       gsap.set([".chapter-two", ".chapter-three", ".chapter-four"], {
         autoAlpha: 0,
         y: 48,
@@ -460,6 +476,10 @@ export default function App() {
       ref={pageRef}
       className="page-bg min-h-screen overflow-x-clip text-white"
     >
+      <div className="fixed left-0 right-0 top-0 z-[70] h-[2px] bg-transparent">
+        <div className="page-progress h-full w-full bg-gradient-to-r from-violet-500 via-purple-400 to-blue-400" />
+      </div>
+
       <Header />
 
       <section className="hero-scroll relative h-[345vh]">
@@ -558,15 +578,16 @@ export default function App() {
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   const links = [
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Education", href: "#education" },
-    { name: "Experience", href: "#experience" },
-    { name: "Achievements", href: "#achievements" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" },
+    { name: "About", href: "#about", id: "about" },
+    { name: "Skills", href: "#skills", id: "skills" },
+    { name: "Education", href: "#education", id: "education" },
+    { name: "Experience", href: "#experience", id: "experience" },
+    { name: "Achievements", href: "#achievements", id: "achievements" },
+    { name: "Projects", href: "#projects", id: "projects" },
+    { name: "Contact", href: "#contact", id: "contact" },
   ];
 
   useEffect(() => {
@@ -577,7 +598,48 @@ function Header() {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    const sections = links
+      .map((link) => document.getElementById(link.id))
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "-28% 0px -62% 0px",
+        threshold: 0,
+      },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
   const closeMenu = () => setMenuOpen(false);
+
+  const linkClasses = (id, mobile = false) => {
+    const isActive = activeSection === id;
+
+    if (mobile) {
+      return `flex items-center justify-between rounded-xl px-4 py-3 text-sm transition ${
+        isActive
+          ? "bg-violet-500/[0.1] text-violet-200"
+          : "text-zinc-400 hover:bg-white/[0.04] hover:text-white"
+      }`;
+    }
+
+    return `nav-link relative py-2 transition ${
+      isActive ? "text-white" : "text-zinc-400 hover:text-white"
+    }`;
+  };
 
   return (
     <header className="fixed top-0 right-0 left-0 z-50 px-4 pt-4 sm:px-8 sm:pt-5">
@@ -587,19 +649,23 @@ function Header() {
             href="#"
             onClick={closeMenu}
             className="text-xl font-bold tracking-[-0.08em]"
+            aria-label="Back to home"
           >
             <span className="text-white">M</span>
             <span className="text-violet-400">A</span>
           </a>
 
-          <div className="hidden items-center gap-5 text-sm text-zinc-400 lg:flex">
+          <div className="hidden items-center gap-5 text-sm lg:flex">
             {links.map((link) => (
               <a
-                key={link.name}
+                key={link.id}
                 href={link.href}
-                className="transition hover:text-white"
+                className={linkClasses(link.id)}
               >
                 {link.name}
+                {activeSection === link.id && (
+                  <span className="absolute -bottom-1 left-1/2 h-[2px] w-5 -translate-x-1/2 rounded-full bg-violet-400 shadow-[0_0_12px_rgba(167,139,250,0.8)]" />
+                )}
               </a>
             ))}
           </div>
@@ -637,13 +703,26 @@ function Header() {
           <div className="space-y-1 px-4 pb-4 pt-3">
             {links.map((link) => (
               <a
-                key={link.name}
+                key={link.id}
                 href={link.href}
                 onClick={closeMenu}
-                className="flex items-center justify-between rounded-xl px-4 py-3 text-sm text-zinc-400 transition hover:bg-white/[0.04] hover:text-white"
+                className={linkClasses(link.id, true)}
               >
-                {link.name}
-                <ArrowRight size={14} className="text-zinc-600" />
+                <span className="flex items-center gap-3">
+                  {activeSection === link.id && (
+                    <span className="h-1.5 w-1.5 rounded-full bg-violet-400" />
+                  )}
+                  {link.name}
+                </span>
+
+                <ArrowRight
+                  size={14}
+                  className={
+                    activeSection === link.id
+                      ? "text-violet-300"
+                      : "text-zinc-600"
+                  }
+                />
               </a>
             ))}
 
