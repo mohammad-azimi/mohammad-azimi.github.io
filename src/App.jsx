@@ -280,6 +280,118 @@ export default function App() {
         .to(".rl-scene", { scale: 1.05, rotate: -3, duration: 0.72 }, 2.1)
         .to(".scroll-fill", { scaleY: 1, duration: 0.55 }, 2.18);
 
+      gsap.from(".about-copy", {
+        y: 48,
+        autoAlpha: 0,
+        duration: 0.9,
+        stagger: 0.16,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: "#about",
+          start: "top 72%",
+          once: true,
+        },
+      });
+
+      gsap.from(".about-trait", {
+        y: 20,
+        autoAlpha: 0,
+        duration: 0.55,
+        stagger: 0.09,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".about-traits",
+          start: "top 84%",
+          once: true,
+        },
+      });
+
+      gsap.set([".education-progress", ".experience-progress"], {
+        scaleY: 0,
+        transformOrigin: "top center",
+      });
+
+      gsap.to(".education-progress", {
+        scaleY: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".education-timeline",
+          start: "top 68%",
+          end: "bottom 62%",
+          scrub: true,
+        },
+      });
+
+      gsap.utils.toArray(".education-entry").forEach((entry) => {
+        gsap.from(entry, {
+          x: 34,
+          y: 22,
+          autoAlpha: 0,
+          duration: 0.72,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: entry,
+            start: "top 84%",
+            once: true,
+          },
+        });
+
+        const dot = entry.querySelector(".timeline-dot");
+
+        if (dot) {
+          gsap.from(dot, {
+            scale: 0.3,
+            autoAlpha: 0,
+            duration: 0.45,
+            ease: "back.out(1.7)",
+            scrollTrigger: {
+              trigger: entry,
+              start: "top 84%",
+              once: true,
+            },
+          });
+        }
+      });
+
+      gsap.to(".experience-progress", {
+        scaleY: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".experience-timeline",
+          start: "top 68%",
+          end: "bottom 62%",
+          scrub: true,
+        },
+      });
+
+      gsap.utils.toArray(".experience-entry").forEach((entry) => {
+        gsap.from(entry, {
+          x: 34,
+          y: 24,
+          autoAlpha: 0,
+          duration: 0.72,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: entry,
+            start: "top 84%",
+            once: true,
+          },
+        });
+      });
+
+      gsap.from(".achievement-card", {
+        y: 40,
+        autoAlpha: 0,
+        duration: 0.7,
+        stagger: 0.13,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: "#achievements",
+          start: "top 72%",
+          once: true,
+        },
+      });
+
       gsap.utils.toArray(".reveal-section").forEach((section) => {
         gsap.from(section, {
           y: 55,
@@ -669,41 +781,62 @@ function SectionHeading({ eyebrow, title, description }) {
 }
 
 function AboutSection() {
+  const traits = [
+    "Problem Solver",
+    "Quick Learner",
+    "Detail Oriented",
+    "Team Player",
+  ];
+
   return (
-    <section id="about" className="section-border px-6 py-24 sm:px-8 lg:py-32">
-      <div className="reveal-section mx-auto grid max-w-6xl gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-        <SectionHeading
-          eyebrow="ABOUT ME"
-          title={
-            <>
-              Building the future with{" "}
-              <span className="purple-gradient-text">intelligent systems.</span>
-            </>
-          }
-        />
+    <section
+      id="about"
+      className="about-transition section-border relative overflow-hidden px-6 py-28 sm:px-8 lg:py-40"
+    >
+      <div className="about-beam pointer-events-none absolute left-0 right-0 top-0 h-px" />
+      <div className="pointer-events-none absolute left-[12%] top-[30%] h-[360px] w-[360px] rounded-full bg-violet-700/[0.07] blur-[110px]" />
 
-        <div className="space-y-6 text-base leading-8 text-zinc-400">
-          <p>
-            I am a Computer Engineering graduate in Software and an enrolled
-            Master's student in Intelligent Systems at Peter the Great St.
-            Petersburg Polytechnic University.
-          </p>
-          <p>
-            My primary AI interest is Reinforcement Learning. I am interested in
-            understanding how agents learn from decisions and interaction, while
-            also exploring Computer Vision and practical product development.
-          </p>
+      <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[0.94fr_1.06fr] lg:items-center">
+        <div className="about-copy">
+          <SectionHeading
+            eyebrow="ABOUT ME"
+            title={
+              <>
+                Building the future with{" "}
+                <span className="purple-gradient-text">
+                  intelligent systems.
+                </span>
+              </>
+            }
+          />
 
-          <div className="grid gap-3 pt-4 sm:grid-cols-2">
-            {[
-              "Problem Solver",
-              "Quick Learner",
-              "Detail Oriented",
-              "Team Player",
-            ].map((trait) => (
+          <div className="mt-9 inline-flex items-center gap-3 rounded-full border border-violet-400/15 bg-violet-500/[0.06] px-4 py-3 text-xs font-medium tracking-[0.12em] text-violet-200">
+            <span className="h-2 w-2 rounded-full bg-violet-400 shadow-[0_0_13px_rgba(167,139,250,0.8)]" />
+            FROM DECISIONS TO DIRECTION
+          </div>
+        </div>
+
+        <div className="about-copy">
+          <div className="space-y-6 text-base leading-8 text-zinc-400">
+            <p>
+              I am a Computer Engineering graduate in Software and an enrolled
+              Master's student in Intelligent Systems at Peter the Great St.
+              Petersburg Polytechnic University.
+            </p>
+
+            <p>
+              My primary AI interest is Reinforcement Learning. I am interested
+              in understanding how agents learn from decisions and interaction,
+              while also exploring Computer Vision and practical product
+              development.
+            </p>
+          </div>
+
+          <div className="about-traits mt-9 grid gap-3 sm:grid-cols-2">
+            {traits.map((trait) => (
               <div
                 key={trait}
-                className="glass-panel rounded-xl px-4 py-3 text-sm text-zinc-300"
+                className="about-trait glass-panel rounded-xl px-4 py-3 text-sm text-zinc-300"
               >
                 <span className="mr-3 text-violet-400">✦</span>
                 {trait}
@@ -834,7 +967,7 @@ function EducationSection() {
       id="education"
       className="section-border px-6 py-24 sm:px-8 lg:py-32"
     >
-      <div className="reveal-section mx-auto max-w-6xl">
+      <div className="mx-auto max-w-6xl">
         <SectionHeading
           eyebrow="EDUCATION"
           title={
@@ -845,16 +978,26 @@ function EducationSection() {
           }
         />
 
-        <div className="mt-16 space-y-5">
+        <div className="education-timeline relative mt-16 space-y-5 lg:pl-14">
+          <div className="timeline-rail absolute bottom-9 left-[20px] top-9 hidden w-px bg-white/[0.07] lg:block">
+            <div className="education-progress h-full w-full bg-gradient-to-b from-violet-400 via-blue-400 to-violet-500" />
+          </div>
+
           {education.map((item) => (
             <article
               key={item.title}
-              className={`education-card grid gap-5 rounded-3xl p-6 sm:p-8 lg:grid-cols-[205px_1fr] ${
+              className={`education-entry education-card relative grid gap-5 rounded-3xl p-6 sm:p-8 lg:grid-cols-[205px_1fr] ${
                 item.featured
                   ? "border-violet-400/25 bg-violet-500/[0.07]"
                   : "glass-panel"
               }`}
             >
+              <span
+                className={`timeline-dot absolute -left-[43px] top-[38px] hidden h-5 w-5 rounded-full border-[5px] border-[#07070c] lg:block ${
+                  item.featured ? "bg-blue-400" : "bg-violet-400"
+                }`}
+              />
+
               <div>
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/10 text-violet-300">
                   <GraduationCap size={22} />
@@ -893,7 +1036,7 @@ function ExperienceSection() {
       id="experience"
       className="section-border px-6 py-24 sm:px-8 lg:py-32"
     >
-      <div className="reveal-section mx-auto max-w-6xl">
+      <div className="mx-auto max-w-6xl">
         <SectionHeading
           eyebrow="EXPERIENCE"
           title={
@@ -904,11 +1047,15 @@ function ExperienceSection() {
           }
         />
 
-        <div className="relative mt-16 space-y-6 before:absolute before:bottom-0 before:left-[23px] before:top-0 before:w-px before:bg-white/10 sm:before:left-[27px]">
+        <div className="experience-timeline relative mt-16 space-y-6">
+          <div className="absolute bottom-0 left-[23px] top-0 w-px bg-white/10 sm:left-[27px]">
+            <div className="experience-progress h-full w-full bg-gradient-to-b from-violet-400 via-blue-400 to-violet-500" />
+          </div>
+
           {experiences.map((experience) => (
             <article
               key={experience.title}
-              className="relative grid gap-5 pl-16 sm:pl-20 lg:grid-cols-[190px_1fr]"
+              className="experience-entry relative grid gap-5 pl-16 sm:pl-20 lg:grid-cols-[190px_1fr]"
             >
               <div className="absolute left-0 top-1 flex h-12 w-12 items-center justify-center rounded-2xl border border-violet-400/20 bg-[#0c0c14] text-violet-300 sm:h-14 sm:w-14">
                 <Briefcase size={20} />
@@ -958,7 +1105,7 @@ function AchievementsSection() {
           {achievements.map((achievement) => (
             <article
               key={achievement.title}
-              className="glass-panel rounded-3xl p-7"
+              className="achievement-card glass-panel rounded-3xl p-7"
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/10 text-violet-300">
                 <Award size={22} />
