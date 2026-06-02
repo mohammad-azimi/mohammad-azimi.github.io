@@ -9,8 +9,8 @@ import {
   GraduationCap,
   Languages,
   Mail,
-  Sparkles,
   Menu,
+  Sparkles,
   X,
 } from "lucide-react";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
@@ -19,6 +19,22 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
+
+const publicLinks = {
+  email: "mohammad.azimi.dev@gmail.com",
+  github: "https://github.com/mohammad-azimi",
+  linkedin: "https://www.linkedin.com/in/-mohammad--azimi-/",
+};
+
+const navigationLinks = [
+  { name: "About", href: "#about", id: "about" },
+  { name: "Skills", href: "#skills", id: "skills" },
+  { name: "Education", href: "#education", id: "education" },
+  { name: "Experience", href: "#experience", id: "experience" },
+  { name: "Achievements", href: "#achievements", id: "achievements" },
+  { name: "Projects", href: "#projects", id: "projects" },
+  { name: "Contact", href: "#contact", id: "contact" },
+];
 
 const technologies = [
   "Python",
@@ -33,6 +49,15 @@ const technologies = [
   "Git",
   "GitHub",
   "NumPy / Pandas",
+];
+
+const softSkills = [
+  "Problem Solving",
+  "Team Collaboration",
+  "Communication",
+  "Adaptability",
+  "Time Management",
+  "Attention to Detail",
 ];
 
 const focusAreas = [
@@ -143,42 +168,11 @@ const achievements = [
   },
 ];
 
-const projects = [
-  {
-    title: "Habit Tracker",
-    type: "Featured Project",
-    description:
-      "A modern habit tracking application with daily check-ins, progress monitoring, reminders and a PWA experience.",
-    technologies: [
-      "React",
-      "Vite",
-      "Tailwind CSS",
-      "PWA",
-      "Push Notifications",
-    ],
-    live: "https://mohammad-azimi.github.io/Habit-Tracker/",
-    code: "https://github.com/mohammad-azimi/Habit-Tracker",
-    featured: true,
-  },
-];
-
-const publicLinks = {
-  email: "mohammadazimi1011@gmail.com",
-  github: "https://github.com/mohammad-azimi",
-  linkedin: "https://www.linkedin.com/in/-mohammad--azimi-/",
-};
-
 export default function App() {
   const pageRef = useRef(null);
 
   useGSAP(
     () => {
-      const reducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
-
-      if (reducedMotion) return;
-
       gsap.set(".page-progress", {
         scaleX: 0,
         transformOrigin: "left center",
@@ -194,6 +188,17 @@ export default function App() {
           scrub: true,
         },
       });
+
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      if (reducedMotion) {
+        gsap.set([".chapter-two", ".chapter-three", ".chapter-four"], {
+          display: "none",
+        });
+        return;
+      }
 
       gsap.set([".chapter-two", ".chapter-three", ".chapter-four"], {
         autoAlpha: 0,
@@ -211,8 +216,13 @@ export default function App() {
         opacity: 0.14,
       });
 
-      gsap.set([".route-signal", ".optimal-label", ".path-flow"], {
+      gsap.set([".route-signal", ".path-flow"], {
         autoAlpha: 0,
+      });
+
+      gsap.set(".optimal-label", {
+        autoAlpha: 0,
+        y: 12,
       });
 
       gsap.to(".agent-glow", {
@@ -280,18 +290,10 @@ export default function App() {
           },
           0.29,
         )
-        .to(".route-signal", { autoAlpha: 1, duration: 0.2 }, 0.55)
         .to(".path-flow", { autoAlpha: 1, duration: 0.25 }, 0.48)
-        .to(
-          ".optimal-label",
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.35,
-          },
-          0.78,
-        )
+        .to(".route-signal", { autoAlpha: 1, duration: 0.2 }, 0.55)
         .to(".reward-node", { scale: 1.35, duration: 0.38 }, 0.42)
+        .to(".optimal-label", { autoAlpha: 1, y: 0, duration: 0.35 }, 0.78)
         .to(".chapter-two", { autoAlpha: 1, y: 0, duration: 0.5 }, 0.48)
         .to(".scroll-fill", { scaleY: 0.4, duration: 0.7 }, 0.1)
         .to(".chapter-two", { autoAlpha: 0, y: -46, duration: 0.42 }, 1.13)
@@ -472,10 +474,7 @@ export default function App() {
   );
 
   return (
-    <main
-      ref={pageRef}
-      className="page-bg min-h-screen overflow-x-clip text-white"
-    >
+    <main ref={pageRef} className="page-bg min-h-screen text-white">
       <div className="fixed left-0 right-0 top-0 z-[70] h-[2px] bg-transparent">
         <div className="page-progress h-full w-full bg-gradient-to-r from-violet-500 via-purple-400 to-blue-400" />
       </div>
@@ -485,7 +484,8 @@ export default function App() {
       <section className="hero-scroll relative h-[345vh]">
         <div className="sticky top-0 flex h-screen items-center overflow-hidden">
           <div className="grid-overlay pointer-events-none absolute inset-0" />
-          <div className="pointer-events-none absolute right-[7%] top-[20%] h-[480px] w-[480px] rounded-full bg-violet-700/15 blur-[130px]" />
+
+          <div className="pointer-events-none absolute right-[7%] top-[20%] hidden h-[480px] w-[480px] rounded-full bg-violet-700/15 blur-[130px] sm:block" />
 
           <div className="relative mx-auto h-full w-full max-w-6xl px-6 sm:px-8">
             <HeroChapter
@@ -555,6 +555,7 @@ export default function App() {
               <div className="h-14 w-px overflow-hidden bg-white/10">
                 <div className="scroll-fill h-full w-full bg-gradient-to-b from-violet-400 to-blue-500" />
               </div>
+
               <div className="flex items-center gap-2 text-xs font-medium tracking-[0.18em] text-zinc-500">
                 <ArrowDown size={14} />
                 SCROLL TO EXPLORE
@@ -580,16 +581,6 @@ function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
-  const links = [
-    { name: "About", href: "#about", id: "about" },
-    { name: "Skills", href: "#skills", id: "skills" },
-    { name: "Education", href: "#education", id: "education" },
-    { name: "Experience", href: "#experience", id: "experience" },
-    { name: "Achievements", href: "#achievements", id: "achievements" },
-    { name: "Projects", href: "#projects", id: "projects" },
-    { name: "Contact", href: "#contact", id: "contact" },
-  ];
-
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
 
@@ -599,28 +590,31 @@ function Header() {
   }, [menuOpen]);
 
   useEffect(() => {
-    const sections = links
-      .map((link) => document.getElementById(link.id))
-      .filter(Boolean);
+    const updateActiveSection = () => {
+      const marker = window.innerHeight * 0.36;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: "-28% 0px -62% 0px",
-        threshold: 0,
-      },
-    );
+      const activeLink = navigationLinks.find((link) => {
+        const section = document.getElementById(link.id);
 
-    sections.forEach((section) => observer.observe(section));
+        if (!section) return false;
 
-    return () => observer.disconnect();
+        const rect = section.getBoundingClientRect();
+
+        return rect.top <= marker && rect.bottom > marker;
+      });
+
+      setActiveSection(activeLink?.id ?? "");
+    };
+
+    updateActiveSection();
+
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
@@ -642,7 +636,7 @@ function Header() {
   };
 
   return (
-    <header className="fixed top-0 right-0 left-0 z-50 px-4 pt-4 sm:px-8 sm:pt-5">
+    <header className="fixed left-0 right-0 top-0 z-50 px-4 pt-4 sm:px-8 sm:pt-5">
       <nav className="glass-panel mx-auto max-w-6xl rounded-2xl">
         <div className="flex items-center justify-between px-5 py-4">
           <a
@@ -656,13 +650,14 @@ function Header() {
           </a>
 
           <div className="hidden items-center gap-5 text-sm lg:flex">
-            {links.map((link) => (
+            {navigationLinks.map((link) => (
               <a
                 key={link.id}
                 href={link.href}
                 className={linkClasses(link.id)}
               >
                 {link.name}
+
                 {activeSection === link.id && (
                   <span className="absolute -bottom-1 left-1/2 h-[2px] w-5 -translate-x-1/2 rounded-full bg-violet-400 shadow-[0_0_12px_rgba(167,139,250,0.8)]" />
                 )}
@@ -701,7 +696,7 @@ function Header() {
           }`}
         >
           <div className="space-y-1 px-4 pb-4 pt-3">
-            {links.map((link) => (
+            {navigationLinks.map((link) => (
               <a
                 key={link.id}
                 href={link.href}
@@ -761,11 +756,11 @@ function HeroChapter({
 }) {
   return (
     <div
-      className={`${className} absolute left-6 top-[27%] z-10 max-w-[610px] sm:left-8 lg:top-[31%]`}
+      className={`${className} absolute left-6 top-[20%] z-10 max-w-[610px] sm:left-8 sm:top-[27%] lg:top-[31%]`}
     >
       <Badge text={badge} />
 
-      <h1 className="mt-7 text-5xl leading-[0.96] font-bold sm:text-6xl lg:text-7xl">
+      <h1 className="mt-7 text-5xl font-bold leading-[0.96] sm:text-6xl lg:text-7xl">
         {title}
       </h1>
 
@@ -777,7 +772,7 @@ function HeroChapter({
         <div className="mt-10 flex flex-wrap gap-4">
           <a
             href="#about"
-            className="group flex items-center gap-2 rounded-xl bg-violet-600 px-6 py-4 text-sm font-semibold transition hover:bg-violet-500"
+            className="group flex items-center gap-2 rounded-xl bg-violet-600 px-6 py-4 text-sm font-semibold text-white transition hover:bg-violet-500"
           >
             Explore My Journey
             <ArrowRight
@@ -815,18 +810,18 @@ function RLScene() {
   ];
 
   return (
-    <div className="rl-scene absolute top-[49%] right-[-190px] h-[390px] w-[390px] opacity-25 sm:top-[28%] sm:right-[-80px] sm:h-[430px] sm:w-[430px] sm:opacity-55 md:right-[-20px] md:opacity-70 lg:top-[24%] lg:right-[6px] lg:h-[535px] lg:w-[535px] lg:opacity-100">
-      <div className="agent-glow absolute inset-[110px] rounded-full bg-violet-600/30 blur-[86px]" />
+    <div className="rl-scene absolute right-[-64px] top-[57%] h-[300px] w-[300px] opacity-20 sm:right-[-80px] sm:top-[28%] sm:h-[430px] sm:w-[430px] sm:opacity-55 md:right-[-20px] md:opacity-70 lg:right-[6px] lg:top-[24%] lg:h-[535px] lg:w-[535px] lg:opacity-100">
+      <div className="agent-glow absolute inset-[72px] rounded-full bg-violet-600/30 blur-[64px] sm:inset-[110px] sm:blur-[86px]" />
 
       <div className="ring-one absolute inset-[14px] rounded-full border border-violet-400/[0.09]">
         <span className="absolute left-[23%] top-[-4px] h-2 w-2 rounded-full bg-violet-300 shadow-[0_0_16px_rgba(196,181,253,0.75)]" />
       </div>
 
-      <div className="ring-two absolute inset-[47px] rounded-full border border-blue-400/[0.09]">
+      <div className="ring-two absolute inset-[36px] rounded-full border border-blue-400/[0.09] sm:inset-[47px]">
         <span className="absolute bottom-[18%] right-[3px] h-1.5 w-1.5 rounded-full bg-blue-300 shadow-[0_0_14px_rgba(96,165,250,0.8)]" />
       </div>
 
-      <div className="absolute inset-[84px] rounded-full border border-violet-400/[0.1]" />
+      <div className="absolute inset-[58px] rounded-full border border-violet-400/[0.1] sm:inset-[84px]" />
 
       <div className="pointer-events-none absolute inset-0">
         {neuralDots.map((dot, index) => (
@@ -916,25 +911,40 @@ function RLScene() {
         </g>
       </svg>
 
-      <SceneNode className="left-[63px] top-[78px]" text="STATE" />
-      <SceneNode className="left-[47px] bottom-[86px]" text="ACTION" />
-      <SceneNode className="right-[44px] bottom-[84px]" text="ENV" />
+      <SceneNode
+        className="left-[35px] top-[43px] sm:left-[63px] sm:top-[78px]"
+        text="STATE"
+      />
+      <SceneNode
+        className="bottom-[48px] left-[30px] sm:bottom-[86px] sm:left-[47px]"
+        text="ACTION"
+      />
+      <SceneNode
+        className="bottom-[48px] right-[28px] sm:bottom-[84px] sm:right-[44px]"
+        text="ENV"
+      />
 
-      <div className="reward-node absolute right-[43px] top-[66px] flex h-[84px] w-[84px] items-center justify-center rounded-[22px] border border-blue-400/35 bg-blue-400/[0.1] text-[11px] font-semibold tracking-[0.19em] text-blue-100 shadow-[0_0_40px_rgba(59,130,246,0.2)]">
+      <div className="reward-node absolute right-[28px] top-[38px] flex h-[58px] w-[58px] items-center justify-center rounded-[17px] border border-blue-400/35 bg-blue-400/[0.1] text-[8px] font-semibold tracking-[0.14em] text-blue-100 shadow-[0_0_40px_rgba(59,130,246,0.2)] sm:right-[43px] sm:top-[66px] sm:h-[84px] sm:w-[84px] sm:rounded-[22px] sm:text-[11px] sm:tracking-[0.19em]">
         REWARD
       </div>
 
-      <div className="optimal-label invisible absolute right-[32px] top-[157px] rounded-full border border-violet-400/20 bg-violet-500/10 px-3 py-2 text-[9px] font-semibold tracking-[0.18em] text-violet-200 opacity-0">
+      <div className="optimal-label invisible absolute right-[20px] top-[103px] rounded-full border border-violet-400/20 bg-violet-500/10 px-2 py-1.5 text-[7px] font-semibold tracking-[0.14em] text-violet-200 opacity-0 sm:right-[32px] sm:top-[157px] sm:px-3 sm:py-2 sm:text-[9px] sm:tracking-[0.18em]">
         OPTIMAL POLICY
       </div>
 
-      <div className="agent-node glass-panel absolute left-1/2 top-1/2 flex h-[112px] w-[112px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-[29px] border-violet-400/25 shadow-[0_0_60px_rgba(124,58,237,0.22)]">
-        <div className="agent-pulse pointer-events-none absolute inset-0 rounded-[29px] border border-violet-400/35" />
-        <Sparkles size={22} className="text-violet-300" />
-        <span className="mt-2 text-[11px] font-semibold tracking-[0.2em] text-violet-100">
+      <div className="agent-node glass-panel absolute left-1/2 top-1/2 flex h-[74px] w-[74px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-[21px] border-violet-400/25 shadow-[0_0_60px_rgba(124,58,237,0.22)] sm:h-[112px] sm:w-[112px] sm:rounded-[29px]">
+        <div className="agent-pulse pointer-events-none absolute inset-0 rounded-[21px] border border-violet-400/35 sm:rounded-[29px]" />
+
+        <Sparkles
+          size={17}
+          className="text-violet-300 sm:h-[22px] sm:w-[22px]"
+        />
+
+        <span className="mt-1.5 text-[8px] font-semibold tracking-[0.18em] text-violet-100 sm:mt-2 sm:text-[11px] sm:tracking-[0.2em]">
           AGENT
         </span>
-        <span className="mt-1 text-[9px] tracking-[0.13em] text-zinc-500">
+
+        <span className="mt-1 text-[7px] tracking-[0.11em] text-zinc-500 sm:text-[9px] sm:tracking-[0.13em]">
           π(a|s)
         </span>
       </div>
@@ -945,7 +955,7 @@ function RLScene() {
 function SceneNode({ className, text }) {
   return (
     <div
-      className={`${className} path-dim absolute flex h-[76px] w-[76px] items-center justify-center rounded-[20px] border border-white/[0.09] bg-white/[0.028] text-[10px] font-semibold tracking-[0.16em] text-zinc-400 backdrop-blur-md`}
+      className={`${className} path-dim absolute flex h-[52px] w-[52px] items-center justify-center rounded-[15px] border border-white/[0.09] bg-white/[0.028] text-[7px] font-semibold tracking-[0.12em] text-zinc-400 backdrop-blur-md sm:h-[76px] sm:w-[76px] sm:rounded-[20px] sm:text-[10px] sm:tracking-[0.16em]`}
     >
       {text}
     </div>
@@ -965,9 +975,11 @@ function SectionHeading({ eyebrow, title, description }) {
   return (
     <div className="max-w-3xl">
       <Badge text={eyebrow} />
+
       <h2 className="mt-6 text-4xl font-semibold leading-tight text-white sm:text-5xl">
         {title}
       </h2>
+
       {description && (
         <p className="mt-5 text-base leading-7 text-zinc-400 sm:text-lg">
           {description}
@@ -991,7 +1003,8 @@ function AboutSection() {
       className="about-transition section-border relative overflow-hidden px-6 py-28 sm:px-8 lg:py-40"
     >
       <div className="about-beam pointer-events-none absolute left-0 right-0 top-0 h-px" />
-      <div className="pointer-events-none absolute left-[12%] top-[30%] h-[360px] w-[360px] rounded-full bg-violet-700/[0.07] blur-[110px]" />
+
+      <div className="pointer-events-none absolute left-[12%] top-[30%] hidden h-[360px] w-[360px] rounded-full bg-violet-700/[0.07] blur-[110px] sm:block" />
 
       <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[0.94fr_1.06fr] lg:items-center">
         <div className="about-copy">
@@ -1078,30 +1091,23 @@ function SkillsSection() {
                 </div>
               ))}
             </div>
-          </div>
 
-          <div className="mt-10 border-t border-white/[0.06] pt-7">
-            <div className="flex items-center gap-3">
-              <Sparkles size={18} className="text-violet-300" />
-              <h3 className="text-lg font-semibold">Soft Skills</h3>
-            </div>
+            <div className="mt-10 border-t border-white/[0.06] pt-7">
+              <div className="flex items-center gap-3">
+                <Sparkles size={18} className="text-violet-300" />
+                <h3 className="text-lg font-semibold">Soft Skills</h3>
+              </div>
 
-            <div className="mt-5 flex flex-wrap gap-3">
-              {[
-                "Problem Solving",
-                "Team Collaboration",
-                "Communication",
-                "Adaptability",
-                "Time Management",
-                "Attention to Detail",
-              ].map((skill) => (
-                <span
-                  key={skill}
-                  className="rounded-full border border-white/[0.07] bg-white/[0.025] px-4 py-3 text-sm text-zinc-400"
-                >
-                  {skill}
-                </span>
-              ))}
+              <div className="mt-5 flex flex-wrap gap-3">
+                {softSkills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="rounded-full border border-white/[0.07] bg-white/[0.025] px-4 py-3 text-sm text-zinc-400"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -1118,9 +1124,11 @@ function SkillsSection() {
                     <p className="text-[11px] font-semibold tracking-[0.16em] text-violet-300">
                       {area.label}
                     </p>
+
                     <p className="mt-1 font-medium text-zinc-100">
                       {area.title}
                     </p>
+
                     <p className="mt-2 text-sm leading-6 text-zinc-500">
                       {area.description}
                     </p>
@@ -1199,6 +1207,7 @@ function EducationSection() {
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/10 text-violet-300">
                   <GraduationCap size={22} />
                 </div>
+
                 <p className="text-sm font-medium text-violet-300">
                   {item.period}
                 </p>
@@ -1208,7 +1217,9 @@ function EducationSection() {
                 <h3 className="text-xl font-semibold text-white sm:text-2xl">
                   {item.title}
                 </h3>
+
                 <p className="mt-2 text-sm text-zinc-300">{item.institution}</p>
+
                 <p className="mt-5 max-w-3xl text-sm leading-7 text-zinc-400 sm:text-base">
                   {item.description}
                 </p>
@@ -1266,9 +1277,11 @@ function ExperienceSection() {
                 <h3 className="text-lg font-semibold text-white">
                   {experience.title}
                 </h3>
+
                 <p className="mt-2 text-sm text-zinc-300">
                   {experience.organization}
                 </p>
+
                 <p className="mt-4 text-sm leading-7 text-zinc-400">
                   {experience.description}
                 </p>
@@ -1287,7 +1300,7 @@ function AchievementsSection() {
       id="achievements"
       className="section-border px-6 py-24 sm:px-8 lg:py-32"
     >
-      <div className="reveal-section mx-auto max-w-6xl">
+      <div className="mx-auto max-w-6xl">
         <SectionHeading
           eyebrow="ACHIEVEMENTS"
           title={
@@ -1307,12 +1320,15 @@ function AchievementsSection() {
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-500/10 text-violet-300">
                 <Award size={22} />
               </div>
+
               <p className="mt-7 text-xs font-semibold tracking-[0.16em] text-violet-300">
                 {achievement.year}
               </p>
+
               <h3 className="mt-3 text-lg font-semibold leading-7">
                 {achievement.title}
               </h3>
+
               <p className="mt-4 text-sm leading-6 text-zinc-500">
                 {achievement.institution}
               </p>
@@ -1343,7 +1359,7 @@ function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="section-border px-6 py-24 sm:px-8 lg:py-32"
+      className="section-border overflow-hidden px-6 py-24 sm:px-8 lg:py-32"
     >
       <div className="mx-auto max-w-6xl">
         <SectionHeading
@@ -1443,9 +1459,11 @@ function ProjectsSection() {
           <p className="text-xs font-semibold tracking-[0.18em] text-violet-300">
             NEXT PROJECT
           </p>
+
           <h3 className="mt-4 text-2xl font-semibold">
             Reinforcement Learning Project
           </h3>
+
           <p className="mt-4 max-w-2xl text-sm leading-7 text-zinc-500">
             A future project space for practical experimentation with agents,
             environments, policies and rewards.
@@ -1459,7 +1477,7 @@ function ProjectsSection() {
 function ProjectVisual() {
   return (
     <div className="project-visual relative">
-      <div className="project-light pointer-events-none absolute left-1/2 top-1/2 h-[300px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-600/20 blur-[90px]" />
+      <div className="project-light pointer-events-none absolute left-1/2 top-1/2 hidden h-[300px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-600/20 blur-[90px] sm:block" />
 
       <div className="relative overflow-hidden rounded-[26px] border border-white/[0.1] bg-[#080810] p-3 shadow-[0_25px_90px_rgba(0,0,0,0.38)] sm:p-4">
         <div className="mb-3 flex items-center gap-2 px-2 py-1">
@@ -1480,10 +1498,10 @@ function ProjectVisual() {
           />
         </div>
 
-        <div className="absolute bottom-7 right-7 hidden w-[36%] overflow-hidden rounded-xl border border-white/[0.12] bg-[#0b0b14] p-1.5 shadow-2xl sm:block">
+        <div className="absolute bottom-7 right-7 hidden w-[42%] overflow-hidden rounded-xl border border-white/[0.12] bg-[#0b0b14] p-1.5 shadow-2xl sm:block">
           <img
             src="/projects/habit-tracker/feature.png"
-            alt="Habit Tracker feature preview"
+            alt="Habit Tracker analytics feature preview"
             className="block w-full rounded-lg object-cover"
           />
         </div>
@@ -1498,6 +1516,7 @@ function ContactSection() {
     email: "",
     message: "",
   });
+
   const [formStatus, setFormStatus] = useState("");
 
   const handleChange = (event) => {
@@ -1538,7 +1557,7 @@ function ContactSection() {
   return (
     <section
       id="contact"
-      className="section-border px-6 py-24 sm:px-8 lg:py-32"
+      className="section-border overflow-hidden px-6 py-24 sm:px-8 lg:py-32"
     >
       <div className="reveal-section mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.82fr_1.18fr]">
         <div>
@@ -1681,6 +1700,7 @@ function Footer() {
           </span>
           © 2026 Mohammad Azimi. All rights reserved.
         </div>
+
         <a href="#" className="transition hover:text-white">
           Back to Top ↑
         </a>

@@ -10,16 +10,23 @@
 }
 
 html {
+  width: 100%;
+  overflow-x: clip;
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  min-width: 320px;
+  width: 100%;
   min-height: 100vh;
+  overflow-x: clip;
   background: #050508;
   color: #f5f3ff;
-  overflow-x: clip;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
 }
 
 * {
@@ -38,7 +45,8 @@ textarea {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   font-family: "Space Grotesk", "Inter", sans-serif;
   letter-spacing: -0.045em;
 }
@@ -46,6 +54,10 @@ h3 {
 ::selection {
   background: rgba(139, 92, 246, 0.38);
   color: #ffffff;
+}
+
+section[id] {
+  scroll-margin-top: 7rem;
 }
 
 .page-bg {
@@ -89,38 +101,28 @@ h3 {
   color: transparent;
 }
 
-.education-card {
-  border: 1px solid rgba(255, 255, 255, 0.085);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+.page-progress {
+  box-shadow:
+    0 0 11px rgba(139, 92, 246, 0.75),
+    0 0 22px rgba(96, 165, 250, 0.35);
 }
 
-.featured-project {
-  border: 1px solid rgba(139, 92, 246, 0.18);
-  background:
-    radial-gradient(circle at 85% 20%, rgba(124, 58, 237, 0.11), transparent 34%),
-    rgba(9, 9, 16, 0.74);
+.nav-link {
+  letter-spacing: -0.01em;
 }
 
-.form-field {
-  width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.085);
-  border-radius: 0.75rem;
-  background: rgba(255, 255, 255, 0.028);
-  padding: 1rem;
-  font-size: 0.875rem;
-  color: #f5f3ff;
-  outline: none;
-  transition: border-color 180ms ease, background 180ms ease;
+.mobile-menu {
+  max-height: 0;
+  opacity: 0;
+  transition:
+    max-height 280ms ease,
+    opacity 220ms ease,
+    border-color 220ms ease;
 }
 
-.form-field::placeholder {
-  color: #71717a;
-}
-
-.form-field:focus {
-  border-color: rgba(139, 92, 246, 0.48);
-  background: rgba(139, 92, 246, 0.045);
+.mobile-menu-open {
+  max-height: 31rem;
+  opacity: 1;
 }
 
 .rl-scene {
@@ -145,12 +147,6 @@ h3 {
     rgba(9, 9, 16, 0.76);
 }
 
-@keyframes route-flow {
-  to {
-    stroke-dashoffset: -44;
-  }
-}
-
 .about-transition {
   background:
     radial-gradient(circle at 20% 48%, rgba(124, 58, 237, 0.07), transparent 29%),
@@ -166,6 +162,12 @@ h3 {
     transparent
   );
   box-shadow: 0 0 26px rgba(139, 92, 246, 0.3);
+}
+
+.education-card {
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
 .timeline-rail {
@@ -203,6 +205,35 @@ h3 {
   animation: project-light-float 4.8s ease-in-out infinite alternate;
 }
 
+.form-field {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.028);
+  padding: 1rem;
+  font-size: 0.875rem;
+  color: #f5f3ff;
+  outline: none;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.form-field::placeholder {
+  color: #71717a;
+}
+
+.form-field:focus {
+  border-color: rgba(139, 92, 246, 0.48);
+  background: rgba(139, 92, 246, 0.045);
+}
+
+@keyframes route-flow {
+  to {
+    stroke-dashoffset: -44;
+  }
+}
+
 @keyframes project-light-float {
   from {
     transform: translate(-52%, -48%) scale(0.95);
@@ -215,37 +246,10 @@ h3 {
   }
 }
 
-.mobile-menu {
-  max-height: 0;
-  opacity: 0;
-  transition:
-    max-height 280ms ease,
-    opacity 220ms ease,
-    border-color 220ms ease;
-}
-
-.mobile-menu-open {
-  max-height: 31rem;
-  opacity: 1;
-}
-
-section[id] {
-  scroll-margin-top: 7rem;
-}
-
-.page-progress {
-  box-shadow:
-    0 0 11px rgba(139, 92, 246, 0.75),
-    0 0 22px rgba(96, 165, 250, 0.35);
-}
-
-.nav-link {
-  letter-spacing: -0.01em;
-}
-
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .grid-overlay {
-    mask-image: radial-gradient(circle at 53% 27%, black 0%, transparent 67%);
-    -webkit-mask-image: radial-gradient(circle at 53% 27%, black 0%, transparent 67%);
+    background-size: 42px 42px;
+    mask-image: radial-gradient(circle at 68% 57%, black 0%, transparent 62%);
+    -webkit-mask-image: radial-gradient(circle at 68% 57%, black 0%, transparent 62%);
   }
 }
