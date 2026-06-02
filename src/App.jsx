@@ -21,7 +21,7 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const publicLinks = {
-  email: "mohammad.azimi.dev@gmail.com",
+  email: "mohammadazimi1011@gmail.com",
   github: "https://github.com/mohammad-azimi",
   linkedin: "https://www.linkedin.com/in/-mohammad--azimi-/",
 };
@@ -1547,11 +1547,23 @@ function ContactSection() {
       `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
     );
 
-    window.location.href = `mailto:${publicLinks.email}?subject=${subject}&body=${body}`;
+    const gmailComposeUrl =
+      `https://mail.google.com/mail/?view=cm&fs=1` +
+      `&to=${encodeURIComponent(publicLinks.email)}` +
+      `&su=${subject}` +
+      `&body=${body}`;
 
-    setFormStatus(
-      "Your email application should open with the message prepared.",
+    const gmailWindow = window.open(
+      gmailComposeUrl,
+      "_blank",
+      "noopener,noreferrer",
     );
+
+    if (gmailWindow) {
+      setFormStatus("Gmail opened with your message prepared.");
+    } else {
+      setFormStatus("Please allow pop-ups to open Gmail with your message.");
+    }
   };
 
   return (
@@ -1578,10 +1590,13 @@ function ContactSection() {
 
           <div className="mt-9 space-y-3">
             <ContactCard
-              href={`mailto:${publicLinks.email}`}
+              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+                publicLinks.email,
+              )}`}
               icon={<Mail size={19} />}
               label="Email Me"
               value={publicLinks.email}
+              external
             />
 
             <ContactCard
@@ -1645,7 +1660,7 @@ function ContactSection() {
             type="submit"
             className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-violet-600 px-5 py-4 text-sm font-semibold transition hover:bg-violet-500"
           >
-            Prepare Email
+            Open in Gmail
             <ArrowRight size={16} />
           </button>
 
@@ -1656,7 +1671,7 @@ function ContactSection() {
             }`}
           >
             {formStatus ||
-              "Your message will be prepared in your email application."}
+              "Your message will be prepared in Gmail before sending."}
           </p>
         </form>
       </div>
