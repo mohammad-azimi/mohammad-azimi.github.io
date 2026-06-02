@@ -12,7 +12,10 @@ import {
   Menu,
   Sparkles,
   X,
+  CheckCircle2,
+  LoaderCircle,
 } from "lucide-react";
+import { useForm, ValidationError } from "@formspree/react";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -25,6 +28,8 @@ const publicLinks = {
   github: "https://github.com/mohammad-azimi",
   linkedin: "https://www.linkedin.com/in/-mohammad--azimi-/",
 };
+
+const formspreeFormId = "xzdqpbrg";
 
 const navigationLinks = [
   { name: "About", href: "#about", id: "about" },
@@ -1511,60 +1516,7 @@ function ProjectVisual() {
 }
 
 function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const [formStatus, setFormStatus] = useState("");
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    setFormData((current) => ({
-      ...current,
-      [name]: value,
-    }));
-
-    setFormStatus("");
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const name = formData.name.trim();
-    const email = formData.email.trim();
-    const message = formData.message.trim();
-
-    if (!name || !email || !message) {
-      setFormStatus("Please complete all fields before sending.");
-      return;
-    }
-
-    const subject = encodeURIComponent(`Portfolio message from ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
-    );
-
-    const gmailComposeUrl =
-      `https://mail.google.com/mail/?view=cm&fs=1` +
-      `&to=${encodeURIComponent(publicLinks.email)}` +
-      `&su=${subject}` +
-      `&body=${body}`;
-
-    const gmailWindow = window.open(
-      gmailComposeUrl,
-      "_blank",
-      "noopener,noreferrer",
-    );
-
-    if (gmailWindow) {
-      setFormStatus("Gmail opened with your message prepared.");
-    } else {
-      setFormStatus("Please allow pop-ups to open Gmail with your message.");
-    }
-  };
+  const [state, submitForm, reset] = useForm(formspreeFormId);
 
   return (
     <section
@@ -1619,61 +1571,126 @@ function ContactSection() {
           </div>
         </div>
 
-        <form
-          onSubmit={handleSubmit}
-          className="glass-panel rounded-3xl p-6 sm:p-8"
-        >
-          <div className="grid gap-4 sm:grid-cols-2">
-            <input
-              className="form-field"
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Your Name"
-              autoComplete="name"
-              required
-            />
+        <div className="glass-panel rounded-3xl p-6 sm:p-8">
+          {state.succeeded ? (
+            <div className="flex min-h-[410px] flex-col items-center justify-center text-center">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-violet-400/20 bg-violet-500/10 text-violet-300">
+                <CheckCircle2 size={30} />
+              </div>
 
-            <input
-              className="form-field"
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Your Email"
-              autoComplete="email"
-              required
-            />
-          </div>
+              <h3 className="mt-7 text-2xl font-semibold text-white">
+                Message sent successfully.
+              </h3>
 
-          <textarea
-            className="form-field mt-4 min-h-40 resize-none"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            placeholder="Your Message"
-            required
-          />
+              <p className="mt-4 max-w-sm text-sm leading-7 text-zinc-400">
+                Thank you for reaching out. I have received your message and
+                will respond as soon as possible.
+              </p>
 
-          <button
-            type="submit"
-            className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-violet-600 px-5 py-4 text-sm font-semibold transition hover:bg-violet-500"
-          >
-            Open in Gmail
-            <ArrowRight size={16} />
-          </button>
+              <button
+                type="button"
+                onClick={reset}
+                className="mt-8 rounded-xl border border-white/10 px-5 py-3 text-sm text-zinc-200 transition hover:border-violet-400/40 hover:bg-violet-500/[0.06]"
+              >
+                Send another message
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={submitForm}>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <input
+                    className="form-field"
+                    id="contact-name"
+                    type="text"
+                    name="name"
+                    placeholder="Your Name"
+                    autoComplete="name"
+                    required
+                  />
 
-          <p
-            aria-live="polite"
-            className={`mt-4 min-h-5 text-xs ${
-              formStatus ? "text-violet-300" : "text-zinc-600"
-            }`}
-          >
-            {formStatus ||
-              "Your message will be prepared in Gmail before sending."}
-          </p>
-        </form>
+                  <ValidationError
+                    prefix="Name"
+                    field="name"
+                    errors={state.errors}
+                    className="mt-2 block text-xs text-red-300"
+                  />
+                </div>
+
+                <div>
+                  <input
+                    className="form-field"
+                    id="contact-email"
+                    type="email"
+                    name="email"
+                    placeholder="Your Email"
+                    autoComplete="email"
+                    required
+                  />
+
+                  <ValidationError
+                    prefix="Email"
+                    field="email"
+                    errors={state.errors}
+                    className="mt-2 block text-xs text-red-300"
+                  />
+                </div>
+              </div>
+
+              <textarea
+                className="form-field mt-4 min-h-40 resize-none"
+                id="contact-message"
+                name="message"
+                placeholder="Your Message"
+                required
+              />
+
+              <ValidationError
+                prefix="Message"
+                field="message"
+                errors={state.errors}
+                className="mt-2 block text-xs text-red-300"
+              />
+
+              <input
+                type="text"
+                name="_gotcha"
+                tabIndex="-1"
+                autoComplete="off"
+                aria-hidden="true"
+                className="hidden"
+              />
+
+              <input
+                type="hidden"
+                name="subject"
+                value="New portfolio message from {{ name }}"
+              />
+
+              <button
+                type="submit"
+                disabled={state.submitting}
+                className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-violet-600 px-5 py-4 text-sm font-semibold text-white transition hover:bg-violet-500 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {state.submitting ? (
+                  <>
+                    <LoaderCircle size={17} className="animate-spin" />
+                    Sending Message...
+                  </>
+                ) : (
+                  <>
+                    Send Message
+                    <ArrowRight size={16} />
+                  </>
+                )}
+              </button>
+
+              <p className="mt-4 text-xs text-zinc-600">
+                Your message will be sent securely through the contact form.
+              </p>
+            </form>
+          )}
+        </div>
       </div>
     </section>
   );
