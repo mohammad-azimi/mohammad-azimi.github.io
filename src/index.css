@@ -1,0 +1,294 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  font-family: "Inter", Arial, sans-serif;
+  color: #f5f3ff;
+  background: #050508;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  width: 100%;
+  overflow-x: clip;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
+  background: #050508;
+  color: #f5f3ff;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Space Grotesk", "Inter", sans-serif;
+  letter-spacing: -0.045em;
+}
+
+::selection {
+  background: rgba(139, 92, 246, 0.38);
+  color: #ffffff;
+}
+
+section[id] {
+  scroll-margin-top: 7rem;
+}
+
+.page-bg {
+  background:
+    radial-gradient(circle at 74% 8%, rgba(109, 40, 217, 0.14), transparent 28%),
+    radial-gradient(circle at 88% 16%, rgba(37, 99, 235, 0.08), transparent 24%),
+    linear-gradient(180deg, #050508 0%, #07070c 100%);
+}
+
+.section-border {
+  border-top: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.glass-panel {
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  background: rgba(9, 9, 16, 0.68);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.grid-overlay {
+  background-image:
+    linear-gradient(rgba(139, 92, 246, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.07) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: radial-gradient(circle at 76% 40%, black 0%, transparent 55%);
+  -webkit-mask-image: radial-gradient(circle at 76% 40%, black 0%, transparent 55%);
+}
+
+.hero-gradient-text {
+  background: linear-gradient(100deg, #ffffff 6%, #c4b5fd 45%, #818cf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.purple-gradient-text {
+  background: linear-gradient(100deg, #c084fc, #818cf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.page-progress {
+  box-shadow:
+    0 0 11px rgba(139, 92, 246, 0.75),
+    0 0 22px rgba(96, 165, 250, 0.35);
+}
+
+.nav-link {
+  letter-spacing: -0.01em;
+}
+
+.mobile-menu {
+  max-height: 0;
+  opacity: 0;
+  transition:
+    max-height 280ms ease,
+    opacity 220ms ease,
+    border-color 220ms ease;
+}
+
+.mobile-menu-open {
+  max-height: 31rem;
+  opacity: 1;
+}
+
+.rl-scene {
+  transform-style: preserve-3d;
+}
+
+.neural-dot {
+  box-shadow:
+    0 0 12px rgba(167, 139, 250, 0.8),
+    0 0 26px rgba(124, 58, 237, 0.32);
+}
+
+.path-flow {
+  opacity: 0.72;
+  stroke-dasharray: 5 17;
+  animation: route-flow 1.15s linear infinite;
+}
+
+.agent-node {
+  background:
+    radial-gradient(circle at 50% 38%, rgba(139, 92, 246, 0.16), transparent 62%),
+    rgba(9, 9, 16, 0.76);
+}
+
+.about-transition {
+  background:
+    radial-gradient(circle at 20% 48%, rgba(124, 58, 237, 0.07), transparent 29%),
+    linear-gradient(180deg, rgba(5, 5, 8, 0.2), rgba(7, 7, 12, 0.52));
+}
+
+.about-beam {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(139, 92, 246, 0.48),
+    rgba(96, 165, 250, 0.3),
+    transparent
+  );
+  box-shadow: 0 0 26px rgba(139, 92, 246, 0.3);
+}
+
+.education-card {
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.timeline-rail {
+  overflow: hidden;
+}
+
+.education-progress,
+.experience-progress {
+  box-shadow:
+    0 0 12px rgba(139, 92, 246, 0.7),
+    0 0 26px rgba(96, 165, 250, 0.28);
+}
+
+.timeline-dot {
+  box-shadow:
+    0 0 13px rgba(139, 92, 246, 0.62),
+    0 0 27px rgba(139, 92, 246, 0.26);
+}
+
+.featured-showcase {
+  background:
+    radial-gradient(circle at 82% 26%, rgba(124, 58, 237, 0.12), transparent 30%),
+    rgba(9, 9, 16, 0.72);
+}
+
+.project-visual img {
+  transition: transform 500ms ease;
+}
+
+.project-visual:hover img:first-of-type {
+  transform: scale(1.015);
+}
+
+.project-light {
+  animation: project-light-float 4.8s ease-in-out infinite alternate;
+}
+
+.form-field {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.028);
+  padding: 1rem;
+  font-size: 0.875rem;
+  color: #f5f3ff;
+  outline: none;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.form-field::placeholder {
+  color: #71717a;
+}
+
+.form-field:focus {
+  border-color: rgba(139, 92, 246, 0.48);
+  background: rgba(139, 92, 246, 0.045);
+}
+
+@keyframes route-flow {
+  to {
+    stroke-dashoffset: -44;
+  }
+}
+
+@keyframes project-light-float {
+  from {
+    transform: translate(-52%, -48%) scale(0.95);
+    opacity: 0.58;
+  }
+
+  to {
+    transform: translate(-48%, -53%) scale(1.08);
+    opacity: 0.82;
+  }
+}
+
+.profile-card img {
+  filter: contrast(1.03) saturate(0.96);
+  transition: transform 600ms ease;
+}
+
+.profile-card:hover img {
+  transform: scale(1.025);
+}
+
+.profile-card {
+  isolation: isolate;
+}
+
+.publication-card {
+  background:
+    radial-gradient(circle at 8% 15%, rgba(124, 58, 237, 0.11), transparent 29%),
+    radial-gradient(circle at 90% 85%, rgba(37, 99, 235, 0.06), transparent 25%),
+    rgba(9, 9, 16, 0.74);
+}
+
+.publication-card:hover {
+  border-color: rgba(167, 139, 250, 0.26);
+}
+
+@media (max-width: 767px) {
+  .grid-overlay {
+    background-size: 42px 42px;
+    mask-image: radial-gradient(circle at 68% 57%, black 0%, transparent 62%);
+    -webkit-mask-image: radial-gradient(circle at 68% 57%, black 0%, transparent 62%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-scroll {
+    height: 100vh !important;
+  }
+
+  .path-flow,
+  .project-light {
+    animation: none !important;
+  }
+}
