@@ -277,3 +277,18 @@ section[id] {
     -webkit-mask-image: radial-gradient(circle at 68% 57%, black 0%, transparent 62%);
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-scroll {
+    height: 100vh !important;
+  }
+
+  .path-flow,
+  .project-light {
+    animation: none !important;
+  }
+}

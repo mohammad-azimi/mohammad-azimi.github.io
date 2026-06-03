@@ -28,7 +28,7 @@ const publicLinks = {
   email: "mohammadazimi1011@gmail.com",
   github: "https://github.com/mohammad-azimi",
   linkedin: "https://www.linkedin.com/in/-mohammad--azimi-/",
-  publication: "https://civilica.com/doc/1650184/",
+  publication: "https://en.civilica.com/doc/1650184/",
 };
 
 const formspreeFormId = "xzdqpbrg";
@@ -106,7 +106,7 @@ const education = [
   {
     period: "Sep 2020 — Aug 2024",
     title: "Bachelor of Computer Engineering — Computer Software Engineering",
-    institution: "Zand-E-Shiraz Institute",
+    institution: "Zand Institute of Higher Education",
     grade: "18.35 / 20",
     description:
       "Built a strong foundation in software development, network support and system management, complemented by practical university work experience and a technical internship.",
@@ -1961,6 +1961,7 @@ function ContactSection() {
                     id="contact-name"
                     type="text"
                     name="name"
+                    aria-label="Your name"
                     placeholder="Your Name"
                     autoComplete="name"
                     required
@@ -1980,6 +1981,7 @@ function ContactSection() {
                     id="contact-email"
                     type="email"
                     name="email"
+                    aria-label="Your email"
                     placeholder="Your Email"
                     autoComplete="email"
                     required
@@ -1998,6 +2000,7 @@ function ContactSection() {
                 className="form-field mt-4 min-h-40 resize-none"
                 id="contact-message"
                 name="message"
+                aria-label="Your message"
                 placeholder="Your Message"
                 required
               />
