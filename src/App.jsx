@@ -97,32 +97,34 @@ const languages = [
 
 const education = [
   {
-    period: "2017 — 2020",
-    title: "Empirical Science Diploma",
+    period: "Sep 2017 — May 2020",
+    title: "High School Diploma — Empirical Science",
     institution: "Shaahed Seyyed Ahmad Khomeini",
     description:
-      "Completed secondary education with an empirical science focus.",
+      "Completed high school education with a focus on empirical sciences and scientific methodology.",
   },
   {
-    period: "2020 — 2024",
-    title: "Bachelor's Degree in Computer Engineering — Software",
-    institution: "Zand Institute of Higher Education",
+    period: "Sep 2020 — Aug 2024",
+    title: "Bachelor of Computer Engineering — Computer Software Engineering",
+    institution: "Zand-E-Shiraz Institute",
+    grade: "18.35 / 20",
     description:
-      "Focused on software development, programming foundations and computer engineering subjects.",
+      "Built a strong foundation in software development, network support and system management, complemented by practical university work experience and a technical internship.",
   },
   {
     period: "Nov 2025 — Present",
-    title: "Russian Language & Pre-University Preparatory Course",
+    title:
+      "Preparatory Course (Russian Language) — Russian Language and Pre-University Program",
     institution: "Peter the Great St. Petersburg Polytechnic University",
     description:
-      "Academic Russian language preparation for international students, including grammar, reading, writing, listening and speaking.",
+      "Intensive Russian language course designed for international students preparing to study in Russian universities, focused on academic language skills, grammar, reading, writing, listening and speaking.",
   },
   {
     period: "Enrolled · Begins after Summer 2026",
     title: "Master's Degree in Intelligent Systems",
     institution: "Peter the Great St. Petersburg Polytechnic University",
     description:
-      "09.04.01_17 Intelligent Systems — International Educational Program, full-time and English-taught, Institute of Cybersecurity and Computer Science.",
+      "09.04.01_17 Intelligent Systems (International Educational Program) · Full-time · English-taught · Institute of Cybersecurity and Computer Science.",
     featured: true,
   },
 ];
@@ -1389,6 +1391,15 @@ function EducationSection() {
                 </h3>
 
                 <p className="mt-2 text-sm text-zinc-300">{item.institution}</p>
+
+                {item.grade && (
+                  <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-violet-400/15 bg-violet-500/[0.06] px-4 py-2 text-xs text-zinc-300">
+                    <span className="font-semibold tracking-[0.12em] text-violet-300">
+                      GRADE
+                    </span>
+                    <span>{item.grade}</span>
+                  </div>
+                )}
 
                 <p className="mt-5 max-w-3xl text-sm leading-7 text-zinc-400 sm:text-base">
                   {item.description}
