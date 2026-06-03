@@ -14,6 +14,7 @@ import {
   X,
   CheckCircle2,
   LoaderCircle,
+  BookOpen,
 } from "lucide-react";
 import { useForm, ValidationError } from "@formspree/react";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
@@ -27,6 +28,7 @@ const publicLinks = {
   email: "mohammadazimi1011@gmail.com",
   github: "https://github.com/mohammad-azimi",
   linkedin: "https://www.linkedin.com/in/-mohammad--azimi-/",
+  publication: "https://civilica.com/doc/1650184/",
 };
 
 const formspreeFormId = "xzdqpbrg";
@@ -37,6 +39,7 @@ const navigationLinks = [
   { name: "Education", href: "#education", id: "education" },
   { name: "Experience", href: "#experience", id: "experience" },
   { name: "Achievements", href: "#achievements", id: "achievements" },
+  { name: "Research", href: "#research", id: "research" },
   { name: "Projects", href: "#projects", id: "projects" },
   { name: "Contact", href: "#contact", id: "contact" },
 ];
@@ -127,31 +130,80 @@ const education = [
 const experiences = [
   {
     period: "2024 — Present",
-    title: "Independent Learning in Artificial Intelligence",
-    organization: "Personal Development",
-    description:
-      "Developing practical knowledge through AI-related learning, university work and personal projects, with a growing focus on Reinforcement Learning.",
+    title: "Independent Study in AI & Machine Learning",
+    organization: "Professional Development",
+    type: "AI Learning",
+    summary:
+      "Building a strong foundation in Artificial Intelligence and Machine Learning through structured self-study, online courses and practical experimentation.",
+    highlights: [
+      "Studying supervised and unsupervised learning, neural networks, deep learning and core AI concepts.",
+      "Developing practical skills with Python, NumPy, Pandas, scikit-learn and machine learning workflows.",
+      "Applying knowledge through personal projects involving predictive modeling, data analysis and real-world datasets.",
+      "Currently expanding my direction toward Reinforcement Learning, while maintaining an interest in Computer Vision.",
+    ],
+    tags: [
+      "Machine Learning",
+      "Python",
+      "Deep Learning",
+      "Reinforcement Learning",
+    ],
+    featured: true,
   },
   {
     period: "2022 — 2024",
     title: "Student Employee — IT Department",
     organization: "Zand Institute of Higher Education",
-    description:
-      "Supported technical and administrative activities in an academic working environment.",
+    type: "Technical Support",
+    summary:
+      "Supported the university's technical environment by assisting with IT services, systems and computer laboratory maintenance.",
+    highlights: [
+      "Provided technical support for university systems and daily IT-related issues.",
+      "Reviewed and maintained computer laboratories, troubleshooting hardware and software problems.",
+      "Collaborated with university staff to support reliable operation of IT services.",
+    ],
+    tags: ["IT Support", "Troubleshooting", "System Maintenance"],
   },
   {
     period: "Aug 2023 — Sep 2023",
     title: "Intern — Network Support Technician",
     organization: "Zand Institute of Higher Education",
-    description:
-      "Gained practical experience with technical support and network-related tasks.",
+    type: "Internship · 120 Hours",
+    summary:
+      "Completed a practical internship with the network support team, gaining hands-on experience with network infrastructure and technical troubleshooting.",
+    highlights: [
+      "Assisted with maintaining and troubleshooting the university's network infrastructure.",
+      "Worked with network devices and supported performance and security monitoring tasks.",
+      "Developed practical understanding of networking protocols, hardware installation and system optimization.",
+    ],
+    tags: ["Networking", "Technical Support", "Infrastructure"],
+  },
+  {
+    period: "2022 — 2024",
+    title: "Student Employee — Building Management Department",
+    organization: "Zand Institute of Higher Education",
+    type: "Operations Support",
+    summary:
+      "Supported academic operations, classroom coordination and faculty asset management within the university environment.",
+    highlights: [
+      "Assisted with classroom scheduling and coordination of student and faculty activities.",
+      "Managed and monitored faculty assets and supported campus facility operations.",
+      "Helped organize university meetings and events while supporting communication between faculty members and students.",
+    ],
+    tags: ["Coordination", "Asset Management", "Event Support"],
   },
   {
     period: "2022 — 2024",
     title: "Student Employee — Education Department",
     organization: "Zand Institute of Higher Education",
-    description:
-      "Worked in an academic administration environment and developed communication and organizational skills.",
+    type: "Academic Administration",
+    summary:
+      "Assisted the education department in supporting students and managing academic administration processes.",
+    highlights: [
+      "Helped students with course selection and related academic issues.",
+      "Supported student records and enrollment-related processes.",
+      "Communicated with students and staff to respond to academic inquiries and provide guidance.",
+    ],
+    tags: ["Student Support", "Administration", "Communication"],
   },
 ];
 
@@ -170,6 +222,29 @@ const achievements = [
     year: "2023",
     title: "Soft Skills Development Certification",
     institution: "Zand Institute of Higher Education",
+  },
+];
+
+const publications = [
+  {
+    status: "Published Conference Paper",
+    year: "2022 / 1401",
+    title:
+      "Early Detection of Forest Fires Using Unmanned Aerial Vehicles and Artificial Intelligence",
+    conference:
+      "7th International Conference on Knowledge and Technology of Electrical Engineering, Computer and Mechanical Engineering of Iran",
+    language: "Persian",
+    documentId: "UTCONF07_133",
+    description:
+      "A research paper proposing the use of unmanned aerial vehicles equipped with artificial intelligence and computer vision capabilities for early smoke and fire detection in forest environments.",
+    keywords: [
+      "Artificial Intelligence",
+      "Computer Vision",
+      "UAV",
+      "Forest Fire Detection",
+      "Crisis Management",
+    ],
+    link: publicLinks.publication,
   },
 ];
 
@@ -448,6 +523,31 @@ export default function App() {
         },
       });
 
+      gsap.from(".publication-card", {
+        y: 42,
+        autoAlpha: 0,
+        duration: 0.82,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: "#research",
+          start: "top 74%",
+          once: true,
+        },
+      });
+
+      gsap.from(".publication-meta", {
+        y: 18,
+        autoAlpha: 0,
+        duration: 0.55,
+        stagger: 0.09,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".publication-card",
+          start: "top 76%",
+          once: true,
+        },
+      });
+
       gsap.from(".project-copy", {
         x: -34,
         autoAlpha: 0,
@@ -600,6 +700,7 @@ export default function App() {
       <EducationSection />
       <ExperienceSection />
       <AchievementsSection />
+      <ResearchSection />
       <ProjectsSection />
       <ContactSection />
       <Footer />
@@ -1315,13 +1416,14 @@ function ExperienceSection() {
     >
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          eyebrow="EXPERIENCE"
+          eyebrow="EXPERIENCE & DEVELOPMENT"
           title={
             <>
               Learning through{" "}
               <span className="purple-gradient-text">work and practice.</span>
             </>
           }
+          description="Professional experience, academic support roles and independent learning that shaped my technical and personal development."
         />
 
         <div className="experience-timeline relative mt-16 space-y-6">
@@ -1334,26 +1436,77 @@ function ExperienceSection() {
               key={experience.title}
               className="experience-entry relative grid gap-5 pl-16 sm:pl-20 lg:grid-cols-[190px_1fr]"
             >
-              <div className="absolute left-0 top-1 flex h-12 w-12 items-center justify-center rounded-2xl border border-violet-400/20 bg-[#0c0c14] text-violet-300 sm:h-14 sm:w-14">
+              <div
+                className={`absolute left-0 top-1 flex h-12 w-12 items-center justify-center rounded-2xl border text-violet-300 sm:h-14 sm:w-14 ${
+                  experience.featured
+                    ? "border-violet-400/30 bg-violet-500/10 shadow-[0_0_26px_rgba(139,92,246,0.14)]"
+                    : "border-violet-400/20 bg-[#0c0c14]"
+                }`}
+              >
                 <Briefcase size={20} />
               </div>
 
-              <p className="pt-4 text-sm font-medium text-violet-300">
-                {experience.period}
-              </p>
-
-              <div className="glass-panel rounded-2xl p-6">
-                <h3 className="text-lg font-semibold text-white">
-                  {experience.title}
-                </h3>
-
-                <p className="mt-2 text-sm text-zinc-300">
-                  {experience.organization}
+              <div className="pt-3">
+                <p className="text-sm font-medium text-violet-300">
+                  {experience.period}
                 </p>
 
-                <p className="mt-4 text-sm leading-7 text-zinc-400">
-                  {experience.description}
+                <p className="mt-3 text-[10px] font-semibold tracking-[0.16em] text-zinc-500">
+                  {experience.type}
                 </p>
+              </div>
+
+              <div
+                className={`rounded-2xl p-6 sm:p-7 ${
+                  experience.featured
+                    ? "border border-violet-400/20 bg-violet-500/[0.045]"
+                    : "glass-panel"
+                }`}
+              >
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div>
+                    <h3 className="text-lg font-semibold text-white sm:text-xl">
+                      {experience.title}
+                    </h3>
+
+                    <p className="mt-2 text-sm text-zinc-300">
+                      {experience.organization}
+                    </p>
+                  </div>
+
+                  {experience.featured && (
+                    <span className="rounded-full border border-violet-400/20 bg-violet-500/10 px-3 py-2 text-[10px] font-semibold tracking-[0.13em] text-violet-200">
+                      CURRENT FOCUS
+                    </span>
+                  )}
+                </div>
+
+                <p className="mt-5 text-sm leading-7 text-zinc-400 sm:text-base">
+                  {experience.summary}
+                </p>
+
+                <ul className="mt-6 space-y-3">
+                  {experience.highlights.map((highlight) => (
+                    <li
+                      key={highlight}
+                      className="flex gap-3 text-sm leading-7 text-zinc-400"
+                    >
+                      <span className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-violet-400" />
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-7 flex flex-wrap gap-2">
+                  {experience.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-white/[0.07] bg-white/[0.025] px-3 py-2 text-xs text-zinc-500"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </article>
           ))}
@@ -1406,6 +1559,109 @@ function AchievementsSection() {
         </div>
       </div>
     </section>
+  );
+}
+
+function ResearchSection() {
+  return (
+    <section
+      id="research"
+      className="section-border overflow-hidden px-6 py-24 sm:px-8 lg:py-32"
+    >
+      <div className="mx-auto max-w-6xl">
+        <SectionHeading
+          eyebrow="RESEARCH & PUBLICATIONS"
+          title={
+            <>
+              Exploring ideas through{" "}
+              <span className="purple-gradient-text">academic research.</span>
+            </>
+          }
+          description="Research experience connecting artificial intelligence with practical, real-world challenges."
+        />
+
+        <div className="mt-14">
+          {publications.map((publication) => (
+            <article
+              key={publication.title}
+              className="publication-card overflow-hidden rounded-[32px] border border-violet-400/15 bg-[#090910] p-6 sm:p-8 lg:p-10"
+            >
+              <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
+                <div>
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-violet-400/20 bg-violet-500/10 text-violet-300">
+                    <BookOpen size={25} />
+                  </div>
+
+                  <p className="publication-meta mt-7 text-xs font-semibold tracking-[0.18em] text-violet-300">
+                    {publication.status}
+                  </p>
+
+                  <div className="publication-meta mt-7 space-y-4 text-sm">
+                    <ResearchInfo label="Published" value={publication.year} />
+
+                    <ResearchInfo
+                      label="Language"
+                      value={`${publication.language} Publication`}
+                    />
+
+                    <ResearchInfo
+                      label="Document ID"
+                      value={publication.documentId}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-2xl font-semibold leading-tight text-white sm:text-3xl">
+                    {publication.title}
+                  </h3>
+
+                  <p className="mt-6 text-sm font-medium leading-7 text-zinc-300 sm:text-base">
+                    {publication.conference}
+                  </p>
+
+                  <p className="mt-6 max-w-3xl text-sm leading-7 text-zinc-400 sm:text-base">
+                    {publication.description}
+                  </p>
+
+                  <div className="mt-8 flex flex-wrap gap-2">
+                    {publication.keywords.map((keyword) => (
+                      <span
+                        key={keyword}
+                        className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-2 text-xs text-zinc-400"
+                      >
+                        {keyword}
+                      </span>
+                    ))}
+                  </div>
+
+                  <a
+                    href={publication.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-9 inline-flex items-center gap-2 rounded-xl bg-violet-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-violet-500"
+                  >
+                    View Publication
+                    <ExternalLink size={15} />
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ResearchInfo({ label, value }) {
+  return (
+    <div className="publication-meta border-b border-white/[0.06] pb-4">
+      <p className="text-[10px] font-semibold tracking-[0.16em] text-zinc-500">
+        {label}
+      </p>
+      <p className="mt-2 leading-6 text-zinc-200">{value}</p>
+    </div>
   );
 }
 
