@@ -113,11 +113,18 @@ const education = [
   },
   {
     period: "Nov 2025 — Present",
-    title:
-      "Preparatory Course (Russian Language) — Russian Language and Pre-University Program",
+    title: "Preparatory Course — Russian Language and Pre-University Program",
     institution: "Peter the Great St. Petersburg Polytechnic University",
     description:
-      "Intensive Russian language course designed for international students preparing to study in Russian universities, focused on academic language skills, grammar, reading, writing, listening and speaking.",
+      "Intensive Russian language and academic preparation program for international students preparing to study at a Russian university. In addition to Russian language training, the program included academic subjects studied in Russian.",
+    coursework: [
+      "Russian Language",
+      "Mathematics",
+      "Physics",
+      "Statistics & Probability",
+      "Informatics",
+      "Chemistry",
+    ],
   },
   {
     period: "Enrolled · Begins after Summer 2026",
@@ -1404,6 +1411,25 @@ function EducationSection() {
                 <p className="mt-5 max-w-3xl text-sm leading-7 text-zinc-400 sm:text-base">
                   {item.description}
                 </p>
+
+                {item.coursework && (
+                  <div className="mt-6">
+                    <p className="text-[10px] font-semibold tracking-[0.16em] text-violet-300">
+                      COURSEWORK STUDIED IN RUSSIAN
+                    </p>
+
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {item.coursework.map((course) => (
+                        <span
+                          key={course}
+                          className="rounded-full border border-white/[0.08] bg-white/[0.025] px-3 py-2 text-xs text-zinc-400"
+                        >
+                          {course}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 {item.featured && (
                   <div className="mt-6 inline-flex rounded-full border border-violet-400/20 bg-violet-500/10 px-4 py-2 text-xs font-medium text-violet-200">
