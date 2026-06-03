@@ -311,6 +311,31 @@ export default function App() {
         .to(".rl-scene", { scale: 1.05, rotate: -3, duration: 0.72 }, 2.1)
         .to(".scroll-fill", { scaleY: 1, duration: 0.55 }, 2.18);
 
+      gsap.from(".profile-card", {
+        x: -42,
+        y: 26,
+        autoAlpha: 0,
+        duration: 0.95,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: "#about",
+          start: "top 72%",
+          once: true,
+        },
+      });
+
+      gsap.from(".profile-accent", {
+        scale: 0.85,
+        autoAlpha: 0,
+        duration: 1.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: "#about",
+          start: "top 72%",
+          once: true,
+        },
+      });
+      
       gsap.from(".about-copy", {
         y: 48,
         autoAlpha: 0,
@@ -1009,9 +1034,50 @@ function AboutSection() {
     >
       <div className="about-beam pointer-events-none absolute left-0 right-0 top-0 h-px" />
 
-      <div className="pointer-events-none absolute left-[12%] top-[30%] hidden h-[360px] w-[360px] rounded-full bg-violet-700/[0.07] blur-[110px] sm:block" />
+      <div className="profile-accent pointer-events-none absolute left-[15%] top-[36%] hidden h-[390px] w-[390px] rounded-full bg-violet-700/[0.12] blur-[115px] lg:block" />
 
-      <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[0.94fr_1.06fr] lg:items-center">
+      <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.74fr_1.26fr] lg:items-center">
+        <div className="profile-card mx-auto w-full max-w-[350px] lg:mx-0">
+          <div className="relative overflow-hidden rounded-[30px] border border-white/[0.09] bg-[#0a0a12] p-3 shadow-[0_28px_90px_rgba(0,0,0,0.36)]">
+            <div className="absolute -right-16 -top-16 h-44 w-44 rounded-full bg-violet-600/20 blur-[55px]" />
+
+            <div className="relative overflow-hidden rounded-[22px] border border-white/[0.07] bg-white">
+              <img
+                src="/profile/mohammad-azimi.png"
+                alt="Mohammad Azimi portrait"
+                className="block aspect-[3/4] w-full object-cover object-top"
+              />
+
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-t from-[#080810] via-[#080810]/55 to-transparent" />
+
+              <div className="absolute inset-x-0 bottom-0 p-5">
+                <p className="text-lg font-semibold text-white">
+                  Mohammad Azimi
+                </p>
+                <p className="mt-1 text-xs leading-5 text-zinc-300">
+                  M.Sc. Student · Intelligent Systems
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="glass-panel mt-4 flex items-center justify-between rounded-2xl px-5 py-4">
+            <div>
+              <p className="text-[10px] font-semibold tracking-[0.16em] text-violet-300">
+                PRIMARY FOCUS
+              </p>
+              <p className="mt-2 text-sm font-medium text-zinc-100">
+                Reinforcement Learning
+              </p>
+            </div>
+
+            <div className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-violet-500/10">
+              <span className="absolute h-7 w-7 animate-ping rounded-full bg-violet-400/10" />
+              <Sparkles size={18} className="relative text-violet-300" />
+            </div>
+          </div>
+        </div>
+
         <div className="about-copy">
           <SectionHeading
             eyebrow="ABOUT ME"
@@ -1025,14 +1091,7 @@ function AboutSection() {
             }
           />
 
-          <div className="mt-9 inline-flex items-center gap-3 rounded-full border border-violet-400/15 bg-violet-500/[0.06] px-4 py-3 text-xs font-medium tracking-[0.12em] text-violet-200">
-            <span className="h-2 w-2 rounded-full bg-violet-400 shadow-[0_0_13px_rgba(167,139,250,0.8)]" />
-            FROM DECISIONS TO DIRECTION
-          </div>
-        </div>
-
-        <div className="about-copy">
-          <div className="space-y-6 text-base leading-8 text-zinc-400">
+          <div className="mt-8 space-y-6 text-base leading-8 text-zinc-400">
             <p>
               I am a Computer Engineering graduate in Software and an enrolled
               Master's student in Intelligent Systems at Peter the Great St.
@@ -1045,6 +1104,11 @@ function AboutSection() {
               while also exploring Computer Vision and practical product
               development.
             </p>
+          </div>
+
+          <div className="mt-8 inline-flex items-center gap-3 rounded-full border border-violet-400/15 bg-violet-500/[0.06] px-4 py-3 text-xs font-medium tracking-[0.12em] text-violet-200">
+            <span className="h-2 w-2 rounded-full bg-violet-400 shadow-[0_0_13px_rgba(167,139,250,0.8)]" />
+            FROM DECISIONS TO DIRECTION
           </div>
 
           <div className="about-traits mt-9 grid gap-3 sm:grid-cols-2">

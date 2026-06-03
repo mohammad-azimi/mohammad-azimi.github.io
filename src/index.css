@@ -246,6 +246,19 @@ section[id] {
   }
 }
 
+.profile-card img {
+  filter: contrast(1.03) saturate(0.96);
+  transition: transform 600ms ease;
+}
+
+.profile-card:hover img {
+  transform: scale(1.025);
+}
+
+.profile-card {
+  isolation: isolate;
+}
+
 @media (max-width: 767px) {
   .grid-overlay {
     background-size: 42px 42px;
