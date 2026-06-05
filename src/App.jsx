@@ -1817,19 +1817,92 @@ function ProjectsSection() {
           </div>
         </article>
 
-        <div className="mt-6 rounded-3xl border border-dashed border-white/[0.09] bg-white/[0.015] px-7 py-8">
-          <p className="text-xs font-semibold tracking-[0.18em] text-violet-300">
-            NEXT PROJECT
+        <div className="mt-6 rounded-3xl border border-violet-400/15 bg-white/[0.018] px-7 py-8">
+          <div className="flex flex-wrap items-start justify-between gap-5">
+            <div>
+              <p className="text-xs font-semibold tracking-[0.18em] text-violet-300">
+                REINFORCEMENT LEARNING PROJECT
+              </p>
+
+              <h3 className="mt-4 text-2xl font-semibold text-white">
+                GlucoPilot-RL
+              </h3>
+            </div>
+
+            <span className="rounded-full border border-violet-400/20 bg-violet-500/10 px-3 py-2 text-[10px] font-semibold tracking-[0.13em] text-violet-200">
+              RESEARCH SIMULATION
+            </span>
+          </div>
+
+          <p className="mt-5 max-w-3xl text-sm leading-7 text-zinc-400">
+            A reinforcement learning research simulation for virtual Type 1
+            Diabetes glucose control, comparing fixed-action baselines, PPO
+            experiments and a final safety-shielded discrete DQN controller
+            inside the simglucose virtual-patient simulator.
           </p>
 
-          <h3 className="mt-4 text-2xl font-semibold">
-            Reinforcement Learning Project
-          </h3>
+          <div className="mt-7 grid gap-4 md:grid-cols-3">
+            <div className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-5">
+              <p className="text-[10px] font-semibold tracking-[0.16em] text-violet-300">
+                METHOD
+              </p>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                Safety-shielded discrete residual DQN policy for simulated
+                control decisions.
+              </p>
+            </div>
 
-          <p className="mt-4 max-w-2xl text-sm leading-7 text-zinc-500">
-            A future project space for practical experimentation with agents,
-            environments, policies and rewards.
-          </p>
+            <div className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-5">
+              <p className="text-[10px] font-semibold tracking-[0.16em] text-violet-300">
+                RESULT
+              </p>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                Improved mean time in range and reduced simulated risk on
+                held-out virtual-patient scenarios.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-5">
+              <p className="text-[10px] font-semibold tracking-[0.16em] text-violet-300">
+                SAFETY NOTE
+              </p>
+              <p className="mt-3 text-sm leading-6 text-zinc-400">
+                Research and educational simulation only; not intended for
+                medical decision-making.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-7 flex flex-wrap gap-2">
+            {[
+              "Python",
+              "Reinforcement Learning",
+              "DQN",
+              "PPO",
+              "simglucose",
+              "Safety Shield",
+              "Research Simulation",
+            ].map((technology) => (
+              <span
+                key={technology}
+                className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-2 text-xs text-zinc-400"
+              >
+                {technology}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href="https://github.com/mohammad-azimi/GlucoPilot-RL"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm text-zinc-200 transition hover:border-violet-400/40"
+            >
+              <FaGithub size={16} />
+              GitHub
+            </a>
+          </div>
         </div>
       </div>
     </section>
