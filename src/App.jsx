@@ -1817,91 +1817,119 @@ function ProjectsSection() {
           </div>
         </article>
 
-        <div className="mt-6 rounded-3xl border border-violet-400/15 bg-white/[0.018] px-7 py-8">
-          <div className="flex flex-wrap items-start justify-between gap-5">
+        <div className="mt-6 overflow-hidden rounded-[32px] border border-violet-400/15 bg-white/[0.018] p-6 sm:p-8 lg:p-10">
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <div>
-              <p className="text-xs font-semibold tracking-[0.18em] text-violet-300">
-                REINFORCEMENT LEARNING PROJECT
+              <div className="flex flex-wrap items-start justify-between gap-5">
+                <div>
+                  <p className="text-xs font-semibold tracking-[0.18em] text-violet-300">
+                    REINFORCEMENT LEARNING PROJECT
+                  </p>
+
+                  <h3 className="mt-4 text-3xl font-semibold text-white">
+                    GlucoPilot-RL
+                  </h3>
+                </div>
+
+                <span className="rounded-full border border-violet-400/20 bg-violet-500/10 px-3 py-2 text-[10px] font-semibold tracking-[0.13em] text-violet-200">
+                  RESEARCH SIMULATION
+                </span>
+              </div>
+
+              <p className="mt-5 max-w-3xl text-sm leading-7 text-zinc-400">
+                A reinforcement learning research simulation for virtual Type 1
+                Diabetes glucose control, comparing fixed-action baselines, PPO
+                experiments and a final safety-shielded discrete DQN controller
+                inside the simglucose virtual-patient simulator.
               </p>
 
-              <h3 className="mt-4 text-2xl font-semibold text-white">
-                GlucoPilot-RL
-              </h3>
+              <div className="mt-7 grid gap-4 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+                <div className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-5">
+                  <p className="text-[10px] font-semibold tracking-[0.16em] text-violet-300">
+                    METHOD
+                  </p>
+                  <p className="mt-3 text-sm leading-6 text-zinc-400">
+                    Safety-shielded discrete residual DQN policy for simulated
+                    control decisions.
+                  </p>
+                </div>
+
+                <div className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-5">
+                  <p className="text-[10px] font-semibold tracking-[0.16em] text-violet-300">
+                    RESULT
+                  </p>
+                  <p className="mt-3 text-sm leading-6 text-zinc-400">
+                    Improved simulated control behavior compared with baseline
+                    experiments.
+                  </p>
+                </div>
+
+                <div className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-5">
+                  <p className="text-[10px] font-semibold tracking-[0.16em] text-violet-300">
+                    SAFETY NOTE
+                  </p>
+                  <p className="mt-3 text-sm leading-6 text-zinc-400">
+                    Research and educational simulation only; not intended for
+                    medical decision-making.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-7 flex flex-wrap gap-2">
+                {[
+                  "Python",
+                  "Reinforcement Learning",
+                  "DQN",
+                  "PPO",
+                  "simglucose",
+                  "Safety Shield",
+                  "Research Simulation",
+                ].map((technology) => (
+                  <span
+                    key={technology}
+                    className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-2 text-xs text-zinc-400"
+                  >
+                    {technology}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href="https://github.com/mohammad-azimi/GlucoPilot-RL"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm text-zinc-200 transition hover:border-violet-400/40"
+                >
+                  <FaGithub size={16} />
+                  GitHub
+                </a>
+              </div>
             </div>
 
-            <span className="rounded-full border border-violet-400/20 bg-violet-500/10 px-3 py-2 text-[10px] font-semibold tracking-[0.13em] text-violet-200">
-              RESEARCH SIMULATION
-            </span>
-          </div>
+            <div className="relative">
+              <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[300px] w-[360px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-600/20 blur-[90px] sm:block" />
 
-          <p className="mt-5 max-w-3xl text-sm leading-7 text-zinc-400">
-            A reinforcement learning research simulation for virtual Type 1
-            Diabetes glucose control, comparing fixed-action baselines, PPO
-            experiments and a final safety-shielded discrete DQN controller
-            inside the simglucose virtual-patient simulator.
-          </p>
+              <div className="relative overflow-hidden rounded-[26px] border border-white/[0.1] bg-[#080810] p-3 shadow-[0_25px_90px_rgba(0,0,0,0.35)]">
+                <div className="mb-3 flex items-center gap-2 px-2 py-1">
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
 
-          <div className="mt-7 grid gap-4 md:grid-cols-3">
-            <div className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-5">
-              <p className="text-[10px] font-semibold tracking-[0.16em] text-violet-300">
-                METHOD
-              </p>
-              <p className="mt-3 text-sm leading-6 text-zinc-400">
-                Safety-shielded discrete residual DQN policy for simulated
-                control decisions.
-              </p>
+                  <div className="ml-4 flex-1 rounded-lg border border-white/[0.05] bg-white/[0.025] px-4 py-2 text-center text-[11px] text-zinc-600">
+                    GlucoPilot-RL Evaluation
+                  </div>
+                </div>
+
+                <div className="overflow-hidden rounded-[18px] border border-white/[0.06] bg-white">
+                  <img
+                    src="/projects/glucopilot-rl/overview.png"
+                    alt="GlucoPilot-RL reinforcement learning evaluation result"
+                    className="block w-full object-cover"
+                  />
+                </div>
+              </div>
             </div>
-
-            <div className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-5">
-              <p className="text-[10px] font-semibold tracking-[0.16em] text-violet-300">
-                RESULT
-              </p>
-              <p className="mt-3 text-sm leading-6 text-zinc-400">
-                Improved mean time in range and reduced simulated risk on
-                held-out virtual-patient scenarios.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-5">
-              <p className="text-[10px] font-semibold tracking-[0.16em] text-violet-300">
-                SAFETY NOTE
-              </p>
-              <p className="mt-3 text-sm leading-6 text-zinc-400">
-                Research and educational simulation only; not intended for
-                medical decision-making.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-7 flex flex-wrap gap-2">
-            {[
-              "Python",
-              "Reinforcement Learning",
-              "DQN",
-              "PPO",
-              "simglucose",
-              "Safety Shield",
-              "Research Simulation",
-            ].map((technology) => (
-              <span
-                key={technology}
-                className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-2 text-xs text-zinc-400"
-              >
-                {technology}
-              </span>
-            ))}
-          </div>
-
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="https://github.com/mohammad-azimi/GlucoPilot-RL"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm text-zinc-200 transition hover:border-violet-400/40"
-            >
-              <FaGithub size={16} />
-              GitHub
-            </a>
           </div>
         </div>
       </div>
