@@ -1741,6 +1741,10 @@ function ProjectsSection() {
               Habit Tracker
             </h3>
 
+            <span className="mt-5 inline-flex w-fit self-start rounded-full border border-violet-400/20 bg-violet-500/10 px-3 py-1.5 text-[10px] font-semibold tracking-[0.13em] text-violet-200">
+              PWA PRODUCT
+            </span>
+
             <p className="mt-5 text-sm leading-7 text-zinc-400">
               A modern habit tracking application designed to help users build
               consistency through daily check-ins, progress monitoring and
@@ -1895,14 +1899,16 @@ function ProjectsSection() {
               </div>
             </div>
 
-            <div className="relative">
-              <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[300px] w-[360px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-600/20 blur-[90px] sm:block" />
+            <div className="group relative">
+              <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[300px] w-[360px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-600/20 opacity-70 blur-[90px] transition duration-700 group-hover:scale-110 group-hover:opacity-100 sm:block" />
 
-              <div className="relative overflow-hidden rounded-[26px] border border-white/[0.1] bg-[#080810] p-3 shadow-[0_25px_90px_rgba(0,0,0,0.35)]">
+              <div className="relative overflow-hidden rounded-[26px] border border-white/[0.1] bg-[#080810] p-3 shadow-[0_25px_90px_rgba(0,0,0,0.35)] transition duration-500 ease-out group-hover:-translate-y-1 group-hover:border-violet-400/35 group-hover:shadow-[0_30px_110px_rgba(124,58,237,0.18)]">
+                <div className="pointer-events-none absolute inset-0 -translate-x-[120%] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent transition duration-700 ease-out group-hover:translate-x-[120%]" />
+
                 <div className="mb-3 flex items-center gap-2 px-2 py-1">
-                  <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition group-hover:bg-red-400/60" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition group-hover:bg-yellow-400/60" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition group-hover:bg-emerald-400/60" />
 
                   <div className="ml-4 flex-1 rounded-lg border border-white/[0.05] bg-white/[0.025] px-4 py-2 text-center text-[11px] text-zinc-600">
                     GlucoPilot-RL Evaluation
@@ -1913,7 +1919,7 @@ function ProjectsSection() {
                   <img
                     src="/projects/glucopilot-rl/overview.png"
                     alt="GlucoPilot-RL reinforcement learning evaluation result"
-                    className="block w-full object-cover"
+                    className="block w-full object-cover transition duration-700 ease-out group-hover:scale-[1.035]"
                   />
                 </div>
               </div>
@@ -1921,21 +1927,19 @@ function ProjectsSection() {
           </div>
         </div>
 
-        <div className="reveal-section mt-6 overflow-hidden rounded-[32px] border border-sky-400/15 bg-white/[0.018] p-6 sm:p-8 lg:p-10">
+        <div className="reveal-section mt-6 overflow-hidden rounded-[32px] border border-violet-400/15 bg-white/[0.018] p-6 sm:p-8 lg:p-10">
           <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
             <div>
-              <div className="flex flex-wrap items-start justify-between gap-5">
-                <div>
-                  <p className="text-xs font-semibold tracking-[0.18em] text-sky-300">
-                    PYTHON DEVELOPER TOOL
-                  </p>
+              <div>
+                <p className="text-xs font-semibold tracking-[0.18em] text-violet-300">
+                  PYTHON DEVELOPER TOOL
+                </p>
 
-                  <h3 className="mt-4 text-3xl font-semibold text-white">
-                    RepoBoost
-                  </h3>
-                </div>
+                <h3 className="mt-4 text-3xl font-semibold text-white">
+                  RepoBoost
+                </h3>
 
-                <span className="rounded-full border border-sky-400/20 bg-sky-500/10 px-3 py-2 text-[10px] font-semibold tracking-[0.13em] text-sky-200">
+                <span className="mt-5 inline-flex rounded-full border border-violet-400/20 bg-violet-500/10 px-3 py-2 text-[10px] font-semibold tracking-[0.13em] text-violet-200">
                   CLI PACKAGE
                 </span>
               </div>
@@ -1966,7 +1970,7 @@ function ProjectsSection() {
                     key={item.label}
                     className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-5"
                   >
-                    <p className="text-[10px] font-semibold tracking-[0.16em] text-sky-300">
+                    <p className="text-[10px] font-semibold tracking-[0.16em] text-violet-300">
                       {item.label}
                     </p>
 
@@ -2002,7 +2006,7 @@ function ProjectsSection() {
                   href="https://github.com/mohammad-azimi/RepoBoost"
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm text-zinc-200 transition hover:border-sky-400/40"
+                  className="flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm text-zinc-200 transition hover:border-violet-400/40"
                 >
                   <FaGithub size={16} />
                   GitHub
@@ -2012,7 +2016,7 @@ function ProjectsSection() {
                   href="https://pypi.org/project/repoboost/"
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm text-zinc-200 transition hover:border-sky-400/40"
+                  className="flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm text-zinc-200 transition hover:border-violet-400/40"
                 >
                   <ExternalLink size={16} />
                   PyPI
@@ -2020,14 +2024,16 @@ function ProjectsSection() {
               </div>
             </div>
 
-            <div className="relative">
-              <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[300px] w-[360px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-600/20 blur-[90px] sm:block" />
+            <div className="group relative">
+              <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[300px] w-[360px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-600/20 opacity-70 blur-[90px] transition duration-700 group-hover:scale-110 group-hover:opacity-100 sm:block" />
 
-              <div className="relative overflow-hidden rounded-[26px] border border-white/[0.1] bg-[#080810] p-3 shadow-[0_25px_90px_rgba(0,0,0,0.35)]">
+              <div className="relative overflow-hidden rounded-[26px] border border-white/[0.1] bg-[#080810] p-3 shadow-[0_25px_90px_rgba(0,0,0,0.35)] transition duration-500 ease-out group-hover:-translate-y-1 group-hover:border-violet-400/35 group-hover:shadow-[0_30px_110px_rgba(124,58,237,0.18)]">
+                <div className="pointer-events-none absolute inset-0 -translate-x-[120%] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent transition duration-700 ease-out group-hover:translate-x-[120%]" />
+
                 <div className="mb-3 flex items-center gap-2 px-2 py-1">
-                  <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition group-hover:bg-red-400/60" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition group-hover:bg-yellow-400/60" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition group-hover:bg-emerald-400/60" />
 
                   <div className="ml-4 flex-1 rounded-lg border border-white/[0.05] bg-white/[0.025] px-4 py-2 text-center text-[11px] text-zinc-600">
                     RepoBoost CLI Demo
@@ -2038,7 +2044,7 @@ function ProjectsSection() {
                   <img
                     src="/projects/repoboost/demo.svg"
                     alt="RepoBoost command-line repository audit demo"
-                    className="block w-full object-cover"
+                    className="block w-full object-cover transition duration-700 ease-out group-hover:scale-[1.035]"
                   />
                 </div>
               </div>
@@ -2052,34 +2058,38 @@ function ProjectsSection() {
 
 function ProjectVisual() {
   return (
-    <div className="project-visual relative">
-      <div className="project-light pointer-events-none absolute left-1/2 top-1/2 hidden h-[300px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-600/20 blur-[90px] sm:block" />
+    <div className="group relative">
+      <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[300px] w-[360px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-600/20 opacity-70 blur-[90px] transition duration-700 group-hover:scale-110 group-hover:opacity-100 sm:block" />
 
-      <div className="relative overflow-hidden rounded-[26px] border border-white/[0.1] bg-[#080810] p-3 shadow-[0_25px_90px_rgba(0,0,0,0.38)] sm:p-4">
+      <div className="relative overflow-hidden rounded-[26px] border border-white/[0.1] bg-[#080810] p-3 shadow-[0_25px_90px_rgba(0,0,0,0.35)] transition duration-500 ease-out group-hover:-translate-y-1 group-hover:border-violet-400/35 group-hover:shadow-[0_30px_110px_rgba(124,58,237,0.18)]">
+        <div className="pointer-events-none absolute inset-0 -translate-x-[120%] bg-gradient-to-r from-transparent via-white/[0.08] to-transparent transition duration-700 ease-out group-hover:translate-x-[120%]" />
+
         <div className="mb-3 flex items-center gap-2 px-2 py-1">
-          <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-          <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
-          <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+          <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition group-hover:bg-red-400/60" />
+          <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition group-hover:bg-yellow-400/60" />
+          <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition group-hover:bg-emerald-400/60" />
 
           <div className="ml-4 flex-1 rounded-lg border border-white/[0.05] bg-white/[0.025] px-4 py-2 text-center text-[11px] text-zinc-600">
             Habit Tracker Dashboard
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-[18px] border border-white/[0.06] bg-[#0b0b14]">
+        <div className="relative overflow-hidden rounded-[18px] border border-white/[0.06] bg-[#050508]">
           <img
             src="/projects/habit-tracker/dashboard.png"
-            alt="Habit Tracker dashboard interface"
-            className="block w-full object-cover"
+            alt="Habit Tracker dashboard preview"
+            className="block w-full object-cover transition duration-700 ease-out group-hover:scale-[1.035]"
           />
-        </div>
 
-        <div className="absolute bottom-7 right-7 hidden w-[42%] overflow-hidden rounded-xl border border-white/[0.12] bg-[#0b0b14] p-1.5 shadow-2xl sm:block">
-          <img
-            src="/projects/habit-tracker/feature.png"
-            alt="Habit Tracker analytics feature preview"
-            className="block w-full rounded-lg object-cover"
-          />
+          <div className="absolute bottom-5 right-5 hidden w-[45%] overflow-hidden rounded-2xl border border-white/10 bg-[#080810] shadow-[0_18px_60px_rgba(0,0,0,0.45)] transition duration-700 ease-out group-hover:scale-[1.04] group-hover:border-violet-400/30 sm:block">
+            <img
+              src="/projects/habit-tracker/feature.png"
+              alt="Habit Tracker feature preview"
+              className="block w-full object-cover"
+            />
+          </div>
+
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-violet-500/10 via-transparent to-transparent opacity-60 transition duration-700 group-hover:opacity-90" />
         </div>
       </div>
     </div>
