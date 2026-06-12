@@ -1719,103 +1719,93 @@ function ProjectsSection() {
   ];
 
   return (
-    <section
-      id="projects"
-      className="section-border overflow-hidden px-6 py-24 sm:px-8 lg:py-32"
-    >
+    <section id="projects" className="px-6 py-28 sm:px-8">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
-          eyebrow="PROJECTS"
+          eyebrow="Selected Projects"
           title={
             <>
-              Products I have{" "}
-              <span className="purple-gradient-text">built.</span>
+              Products I have <span className="text-gradient">built.</span>
             </>
           }
           description="Practical projects that represent my current development skills while I continue growing into AI and Reinforcement Learning."
         />
 
-        <article className="featured-showcase mt-14 overflow-hidden rounded-[32px] border border-violet-400/15 bg-[#090910] p-6 sm:p-8 lg:p-10">
-          <div className="grid gap-12 lg:grid-cols-[0.77fr_1.23fr] lg:items-center">
-            <div className="project-copy">
-              <p className="text-xs font-semibold tracking-[0.18em] text-violet-300">
-                FEATURED PROJECT
-              </p>
+        <div className="featured-showcase mt-14 grid gap-10 rounded-[36px] border border-white/[0.08] bg-white/[0.02] p-6 sm:p-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:p-10">
+          <div className="project-copy flex flex-col justify-center">
+            <p className="text-xs font-semibold tracking-[0.18em] text-violet-300">
+              FEATURED PROJECT
+            </p>
 
-              <h3 className="mt-5 text-4xl font-semibold">
-                Habit <span className="purple-gradient-text">Tracker</span>
-              </h3>
+            <h3 className="mt-4 text-3xl font-semibold text-white sm:text-4xl">
+              Habit Tracker
+            </h3>
 
-              <p className="mt-6 text-base leading-8 text-zinc-400">
-                A modern habit tracking application designed to help users build
-                consistency through daily check-ins, progress monitoring and
-                reminder notifications.
-              </p>
+            <p className="mt-5 text-sm leading-7 text-zinc-400">
+              A modern habit tracking application designed to help users build
+              consistency through daily check-ins, progress monitoring and
+              reminder notifications.
+            </p>
 
-              <div className="mt-7 flex flex-wrap gap-2">
-                {[
-                  "React",
-                  "Vite",
-                  "Tailwind CSS",
-                  "PWA",
-                  "Push Notifications",
-                ].map((technology) => (
-                  <span
-                    key={technology}
-                    className="rounded-full border border-white/[0.08] bg-white/[0.035] px-3 py-2 text-xs text-zinc-400"
-                  >
-                    {technology}
-                  </span>
-                ))}
-              </div>
-
-              <div className="mt-9 flex flex-wrap gap-3">
-                <a
-                  href="https://mohammad-azimi.github.io/Habit-Tracker/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-zinc-200"
+            <div className="mt-7 grid gap-3">
+              {projectFeatures.map((feature, index) => (
+                <div
+                  key={feature.title}
+                  className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-5"
                 >
-                  Live Demo
-                  <ExternalLink size={15} />
-                </a>
+                  <p className="text-[10px] font-semibold tracking-[0.16em] text-violet-300">
+                    0{index + 1} · {feature.title.toUpperCase()}
+                  </p>
 
-                <a
-                  href="https://github.com/mohammad-azimi/Habit-Tracker"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm text-zinc-200 transition hover:border-violet-400/40"
-                >
-                  <FaGithub size={16} />
-                  GitHub
-                </a>
-              </div>
+                  <p className="mt-3 text-sm leading-6 text-zinc-400">
+                    {feature.description}
+                  </p>
+                </div>
+              ))}
             </div>
 
-            <ProjectVisual />
-          </div>
+            <div className="mt-7 flex flex-wrap gap-2">
+              {[
+                "React",
+                "Vite",
+                "Tailwind CSS",
+                "PWA",
+                "Push Notifications",
+              ].map((technology) => (
+                <span
+                  key={technology}
+                  className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-2 text-xs text-zinc-400"
+                >
+                  {technology}
+                </span>
+              ))}
+            </div>
 
-          <div className="project-features mt-10 grid gap-4 border-t border-white/[0.06] pt-8 md:grid-cols-3">
-            {projectFeatures.map((feature, index) => (
-              <div
-                key={feature.title}
-                className="project-feature rounded-2xl border border-white/[0.07] bg-white/[0.025] p-5"
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href="https://mohammad-azimi.github.io/Habit-Tracker/"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-violet-100"
               >
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-500/10 text-xs font-semibold text-violet-300">
-                  0{index + 1}
-                </div>
+                Live Demo
+                <ExternalLink size={16} />
+              </a>
 
-                <h4 className="mt-5 text-base font-semibold text-white">
-                  {feature.title}
-                </h4>
-
-                <p className="mt-3 text-sm leading-6 text-zinc-500">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
+              <a
+                href="https://github.com/mohammad-azimi/Habit-Tracker"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm text-zinc-200 transition hover:border-violet-400/40"
+              >
+                <FaGithub size={16} />
+                GitHub
+              </a>
+            </div>
           </div>
-        </article>
+
+          <ProjectVisual />
+        </div>
 
         <div className="mt-6 overflow-hidden rounded-[32px] border border-violet-400/15 bg-white/[0.018] p-6 sm:p-8 lg:p-10">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
@@ -1843,36 +1833,34 @@ function ProjectsSection() {
                 inside the simglucose virtual-patient simulator.
               </p>
 
-              <div className="mt-7 grid gap-4 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                <div className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-5">
-                  <p className="text-[10px] font-semibold tracking-[0.16em] text-violet-300">
-                    METHOD
-                  </p>
-                  <p className="mt-3 text-sm leading-6 text-zinc-400">
-                    Safety-shielded discrete residual DQN policy for simulated
-                    control decisions.
-                  </p>
-                </div>
+              <div className="mt-7 grid gap-3">
+                {[
+                  {
+                    label: "METHOD",
+                    text: "Safety-shielded discrete residual DQN policy for simulated control decisions.",
+                  },
+                  {
+                    label: "RESULT",
+                    text: "Improved simulated control behavior compared with baseline experiments.",
+                  },
+                  {
+                    label: "SAFETY NOTE",
+                    text: "Research and educational simulation only; not intended for medical decision-making.",
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-5"
+                  >
+                    <p className="text-[10px] font-semibold tracking-[0.16em] text-violet-300">
+                      {item.label}
+                    </p>
 
-                <div className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-5">
-                  <p className="text-[10px] font-semibold tracking-[0.16em] text-violet-300">
-                    RESULT
-                  </p>
-                  <p className="mt-3 text-sm leading-6 text-zinc-400">
-                    Improved simulated control behavior compared with baseline
-                    experiments.
-                  </p>
-                </div>
-
-                <div className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-5">
-                  <p className="text-[10px] font-semibold tracking-[0.16em] text-violet-300">
-                    SAFETY NOTE
-                  </p>
-                  <p className="mt-3 text-sm leading-6 text-zinc-400">
-                    Research and educational simulation only; not intended for
-                    medical decision-making.
-                  </p>
-                </div>
+                    <p className="mt-3 text-sm leading-6 text-zinc-400">
+                      {item.text}
+                    </p>
+                  </div>
+                ))}
               </div>
 
               <div className="mt-7 flex flex-wrap gap-2">
@@ -1925,6 +1913,131 @@ function ProjectsSection() {
                   <img
                     src="/projects/glucopilot-rl/overview.png"
                     alt="GlucoPilot-RL reinforcement learning evaluation result"
+                    className="block w-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="reveal-section mt-6 overflow-hidden rounded-[32px] border border-sky-400/15 bg-white/[0.018] p-6 sm:p-8 lg:p-10">
+          <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+            <div>
+              <div className="flex flex-wrap items-start justify-between gap-5">
+                <div>
+                  <p className="text-xs font-semibold tracking-[0.18em] text-sky-300">
+                    PYTHON DEVELOPER TOOL
+                  </p>
+
+                  <h3 className="mt-4 text-3xl font-semibold text-white">
+                    RepoBoost
+                  </h3>
+                </div>
+
+                <span className="rounded-full border border-sky-400/20 bg-sky-500/10 px-3 py-2 text-[10px] font-semibold tracking-[0.13em] text-sky-200">
+                  CLI PACKAGE
+                </span>
+              </div>
+
+              <p className="mt-5 max-w-3xl text-sm leading-7 text-zinc-400">
+                A Python command-line developer tool that audits GitHub
+                repositories and suggests practical improvements for
+                documentation, CI readiness, repository presentation, GitHub
+                topics and open-source trust signals.
+              </p>
+
+              <div className="mt-7 grid gap-3">
+                {[
+                  {
+                    label: "AUDIT SCORE",
+                    text: "Scores repositories from 0 to 100 and assigns a clear quality grade.",
+                  },
+                  {
+                    label: "ACTIONABLE FIXES",
+                    text: "Detects missing README sections, CI workflows, screenshots, badges and project trust signals.",
+                  },
+                  {
+                    label: "AUTOMATION",
+                    text: "Supports JSON output, score thresholds and GitHub Actions workflow generation.",
+                  },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-5"
+                  >
+                    <p className="text-[10px] font-semibold tracking-[0.16em] text-sky-300">
+                      {item.label}
+                    </p>
+
+                    <p className="mt-3 text-sm leading-6 text-zinc-400">
+                      {item.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-7 flex flex-wrap gap-2">
+                {[
+                  "Python",
+                  "CLI",
+                  "Typer",
+                  "Rich",
+                  "Pytest",
+                  "GitHub Actions",
+                  "PyPI Packaging",
+                  "Developer Tools",
+                ].map((technology) => (
+                  <span
+                    key={technology}
+                    className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-2 text-xs text-zinc-400"
+                  >
+                    {technology}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href="https://github.com/mohammad-azimi/RepoBoost"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm text-zinc-200 transition hover:border-sky-400/40"
+                >
+                  <FaGithub size={16} />
+                  GitHub
+                </a>
+
+                <a
+                  href="https://pypi.org/project/repoboost/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 rounded-xl border border-white/10 px-5 py-3 text-sm text-zinc-200 transition hover:border-sky-400/40"
+                >
+                  <ExternalLink size={16} />
+                  PyPI
+                </a>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[300px] w-[360px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-600/20 blur-[90px] sm:block" />
+
+              <div className="relative overflow-hidden rounded-[26px] border border-white/[0.1] bg-[#080810] p-3 shadow-[0_25px_90px_rgba(0,0,0,0.35)]">
+                <div className="mb-3 flex items-center gap-2 px-2 py-1">
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+
+                  <div className="ml-4 flex-1 rounded-lg border border-white/[0.05] bg-white/[0.025] px-4 py-2 text-center text-[11px] text-zinc-600">
+                    RepoBoost CLI Demo
+                  </div>
+                </div>
+
+                <div className="overflow-hidden rounded-[18px] border border-white/[0.06] bg-[#0d1117]">
+                  <img
+                    src="/projects/repoboost/demo.svg"
+                    alt="RepoBoost command-line repository audit demo"
                     className="block w-full object-cover"
                   />
                 </div>
