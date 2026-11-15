@@ -1768,6 +1768,8 @@ function ProjectsSection() {
                   <img
                     src="/projects/glucopilot-rl/overview.png"
                     alt="GlucoPilot-RL reinforcement learning evaluation result"
+                    loading="lazy"
+                    decoding="async"
                     className="block w-full object-cover transition duration-700 ease-out group-hover:scale-[1.035]"
                   />
                 </div>
