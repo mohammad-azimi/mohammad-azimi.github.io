@@ -22,6 +22,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import VisionForgeProjectCard from "./VisionForgeProjectCard";
+import ChessRLProjectCard from "./ChessRLProjectCard";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -1901,6 +1902,7 @@ function ProjectsSection() {
         </div>
       </div>
       <VisionForgeProjectCard />
+      <ChessRLProjectCard />
     </section>
   );
 }
