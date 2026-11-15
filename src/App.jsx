@@ -21,6 +21,7 @@ import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import VisionForgeProjectCard from "./VisionForgeProjectCard";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -1899,6 +1900,7 @@ function ProjectsSection() {
           </div>
         </div>
       </div>
+      <VisionForgeProjectCard />
     </section>
   );
 }
