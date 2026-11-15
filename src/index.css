@@ -281,3 +281,50 @@ section[id] {
     animation: none !important;
   }
 }
+
+
+/* Mobile navigation and hero refinements */
+
+@media (max-width: 767px) {
+  header nav.glass-panel {
+    background: rgba(8, 8, 16, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.42);
+  }
+
+  html {
+    scroll-padding-top: 7rem;
+  }
+
+  section[id] {
+    scroll-margin-top: 7.5rem;
+  }
+
+  .hero-scroll .chapter-one,
+  .hero-scroll .chapter-two,
+  .hero-scroll .chapter-three,
+  .hero-scroll .chapter-four {
+    right: 1.5rem;
+    max-width: none;
+  }
+
+  .hero-actions {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .hero-actions > a {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .rl-scene {
+    top: 66%;
+    right: 4%;
+    opacity: 0.14;
+    pointer-events: none;
+  }
+}

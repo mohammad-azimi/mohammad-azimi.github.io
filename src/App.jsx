@@ -861,7 +861,7 @@ function HeroChapter({
       </p>
 
       {actions && (
-        <div className="mt-10 flex flex-wrap gap-4">
+        <div className="hero-actions mt-10 flex flex-wrap gap-4">
           <a
             href="#about"
             className="group flex items-center gap-2 rounded-xl bg-violet-600 px-6 py-4 text-sm font-semibold text-white transition hover:bg-violet-500"
