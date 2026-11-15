@@ -1766,7 +1766,7 @@ function ProjectsSection() {
                   <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition group-hover:bg-yellow-400/60" />
                   <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition group-hover:bg-emerald-400/60" />
 
-                  <div className="ml-4 flex-1 rounded-lg border border-white/[0.05] bg-white/[0.025] px-4 py-2 text-center text-[11px] text-zinc-600">
+                  <div className="ml-4 flex-1 rounded-lg border border-white/[0.05] bg-white/[0.025] px-4 py-2 text-center text-[11px] text-zinc-300">
                     GlucoPilot-RL Evaluation
                   </div>
                 </div>
@@ -1893,7 +1893,7 @@ function ProjectsSection() {
                   <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition group-hover:bg-yellow-400/60" />
                   <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition group-hover:bg-emerald-400/60" />
 
-                  <div className="ml-4 flex-1 rounded-lg border border-white/[0.05] bg-white/[0.025] px-4 py-2 text-center text-[11px] text-zinc-600">
+                  <div className="ml-4 flex-1 rounded-lg border border-white/[0.05] bg-white/[0.025] px-4 py-2 text-center text-[11px] text-zinc-300">
                     RepoBoost CLI Demo
                   </div>
                 </div>
@@ -1929,7 +1929,7 @@ function ProjectVisual() {
           <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition group-hover:bg-yellow-400/60" />
           <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition group-hover:bg-emerald-400/60" />
 
-          <div className="ml-4 flex-1 rounded-lg border border-white/[0.05] bg-white/[0.025] px-4 py-2 text-center text-[11px] text-zinc-600">
+          <div className="ml-4 flex-1 rounded-lg border border-white/[0.05] bg-white/[0.025] px-4 py-2 text-center text-[11px] text-zinc-300">
             Habit Tracker Dashboard
           </div>
         </div>

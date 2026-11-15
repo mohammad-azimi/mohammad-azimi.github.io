@@ -101,7 +101,7 @@ export default function VisionForgeProjectCard() {
               <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition group-hover:bg-red-400/60" />
               <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition group-hover:bg-yellow-400/60" />
               <span className="h-2.5 w-2.5 rounded-full bg-white/15 transition group-hover:bg-emerald-400/60" />
-              <div className="ml-4 min-w-0 flex-1 truncate rounded-lg border border-white/[0.05] bg-white/[0.025] px-3 py-2 text-center text-[11px] text-zinc-500">
+              <div className="ml-4 min-w-0 flex-1 truncate rounded-lg border border-white/[0.05] bg-white/[0.025] px-3 py-2 text-center text-[11px] text-zinc-300">
                 VisionForge-AI · Generation Studio
               </div>
             </div>
