@@ -292,48 +292,55 @@ export default function App() {
         y: 12,
       });
 
-      gsap.to(".agent-glow", {
-        scale: 1.18,
-        opacity: 0.65,
-        duration: 2.4,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
+      const motionMedia = gsap.matchMedia();
 
-      gsap.to(".agent-pulse", {
-        scale: 1.55,
-        opacity: 0,
-        duration: 2,
-        repeat: -1,
-        ease: "power1.out",
-      });
+      motionMedia.add(
+        "(min-width: 768px) and (prefers-reduced-motion: no-preference)",
+        () => {
+          gsap.to(".agent-glow", {
+            scale: 1.18,
+            opacity: 0.65,
+            duration: 2.4,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+          });
 
-      gsap.to(".ring-one", {
-        rotate: 360,
-        duration: 34,
-        repeat: -1,
-        ease: "none",
-      });
+          gsap.to(".agent-pulse", {
+            scale: 1.55,
+            opacity: 0,
+            duration: 2,
+            repeat: -1,
+            ease: "power1.out",
+          });
 
-      gsap.to(".ring-two", {
-        rotate: -360,
-        duration: 46,
-        repeat: -1,
-        ease: "none",
-      });
+          gsap.to(".ring-one", {
+            rotate: 360,
+            duration: 34,
+            repeat: -1,
+            ease: "none",
+          });
 
-      gsap.utils.toArray(".neural-dot").forEach((dot, index) => {
-        gsap.to(dot, {
-          x: index % 2 === 0 ? 9 : -9,
-          y: index % 3 === 0 ? -13 : 11,
-          opacity: 0.75,
-          duration: 2.1 + (index % 4) * 0.55,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-        });
-      });
+          gsap.to(".ring-two", {
+            rotate: -360,
+            duration: 46,
+            repeat: -1,
+            ease: "none",
+          });
+
+          gsap.utils.toArray(".neural-dot").forEach((dot, index) => {
+            gsap.to(dot, {
+              x: index % 2 === 0 ? 9 : -9,
+              y: index % 3 === 0 ? -13 : 11,
+              opacity: 0.75,
+              duration: 2.1 + (index % 4) * 0.55,
+              repeat: -1,
+              yoyo: true,
+              ease: "sine.inOut",
+            });
+          });
+        },
+      );
 
       const heroTimeline = gsap.timeline({
         scrollTrigger: {
