@@ -4,7 +4,7 @@
 
 ### Intelligent Systems · Reinforcement Learning · Software Development
 
-A cinematic personal portfolio presenting my academic journey, technical skills, research background, professional experience and projects as I continue building my path in Intelligent Systems and Artificial Intelligence.
+A cinematic personal portfolio presenting my academic journey, technical skills, professional experience and projects as I continue building my path in Intelligent Systems and Artificial Intelligence.
 
 [Live Website](https://mohammad-azimi.github.io/) · [LinkedIn](https://www.linkedin.com/in/-mohammad--azimi-/) · [GitHub Profile](https://github.com/mohammad-azimi)
 
@@ -18,17 +18,16 @@ A cinematic personal portfolio presenting my academic journey, technical skills,
 
 This portfolio was redesigned as a modern, animated web experience centered on my academic and professional direction in **Intelligent Systems**, with a primary interest in **Reinforcement Learning** and an additional interest in **Computer Vision**.
 
-I am a Computer Engineering graduate enrolled in the Master's program in Intelligent Systems at Peter the Great St. Petersburg Polytechnic University.
+I am a Computer Engineering graduate and a Master's student in Intelligent Systems at Peter the Great St. Petersburg Polytechnic University.
 
 ## Featured Sections
 
 * **Cinematic Hero** — an interactive Reinforcement Learning-inspired visual scene built around Agent, Action and Reward.
 * **About Me** — personal introduction and current AI direction.
 * **Skills & Languages** — development tools, AI interests and language abilities.
-* **Education** — academic timeline, including my Russian Language and Pre-University Preparatory Course and Master's enrollment.
+* **Education** — academic timeline, including my completed Russian Language and Pre-University Preparatory Course and ongoing Master's studies.
 * **Experience** — university employment, technical internship and independent AI learning.
 * **Achievements** — certifications and academic accomplishments.
-* **Research & Publications** — published conference research in Artificial Intelligence and Computer Vision.
 * **Projects** — product-focused showcase of my Habit Tracker application.
 * **Contact** — direct contact form integrated with Formspree.
 
@@ -49,16 +48,6 @@ A modern habit tracking web application designed to support consistent routines 
 **Technologies:** React, Vite, Tailwind CSS, PWA, Push Notifications
 
 [Live Demo](https://mohammad-azimi.github.io/Habit-Tracker/) · [Source Code](https://github.com/mohammad-azimi/Habit-Tracker)
-
-## Research & Publication
-
-### Early Detection of Forest Fires Using Unmanned Aerial Vehicles and Artificial Intelligence
-
-Published conference paper exploring the use of unmanned aerial vehicles, artificial intelligence and computer vision for early smoke and forest-fire detection.
-
-**Topics:** Artificial Intelligence, Computer Vision, UAV, Forest Fire Detection, Crisis Management
-
-[View Publication](https://en.civilica.com/doc/1650184/)
 
 ## Built With
 

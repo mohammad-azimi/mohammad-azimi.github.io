@@ -14,7 +14,7 @@ import {
   X,
   CheckCircle2,
   LoaderCircle,
-  BookOpen,
+
 } from "lucide-react";
 import { useForm, ValidationError } from "@formspree/react";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
@@ -28,7 +28,7 @@ const publicLinks = {
   email: "mohammadazimi1011@gmail.com",
   github: "https://github.com/mohammad-azimi",
   linkedin: "https://www.linkedin.com/in/-mohammad--azimi-/",
-  publication: "https://en.civilica.com/doc/1650184/",
+
 };
 
 const formspreeFormId = "xzdqpbrg";
@@ -39,7 +39,6 @@ const navigationLinks = [
   { name: "Education", href: "#education", id: "education" },
   { name: "Experience", href: "#experience", id: "experience" },
   { name: "Achievements", href: "#achievements", id: "achievements" },
-  { name: "Research", href: "#research", id: "research" },
   { name: "Projects", href: "#projects", id: "projects" },
   { name: "Contact", href: "#contact", id: "contact" },
 ];
@@ -112,11 +111,11 @@ const education = [
       "Built a strong foundation in software development, network support and system management, complemented by practical university work experience and a technical internship.",
   },
   {
-    period: "Nov 2025 — Present",
+    period: "Nov 2025 — Jul 2026",
     title: "Preparatory Course — Russian Language and Pre-University Program",
     institution: "Peter the Great St. Petersburg Polytechnic University",
     description:
-      "Intensive Russian language and academic preparation program for international students preparing to study at a Russian university. In addition to Russian language training, the program included academic subjects studied in Russian.",
+      "Completed an intensive Russian language and academic preparation program for international students. Developed language skills in grammar, reading, writing, listening and speaking, while studying academic subjects in Russian, including Mathematics, Physics, Statistics & Probability, Informatics and Chemistry.",
     coursework: [
       "Russian Language",
       "Mathematics",
@@ -127,11 +126,11 @@ const education = [
     ],
   },
   {
-    period: "Enrolled · Begins after Summer 2026",
+    period: "Sep 2026 — Present",
     title: "Master's Degree in Intelligent Systems",
     institution: "Peter the Great St. Petersburg Polytechnic University",
     description:
-      "09.04.01_17 Intelligent Systems (International Educational Program) · Full-time · English-taught · Institute of Cybersecurity and Computer Science.",
+      "Master's student in Intelligent Systems. The program focuses on artificial intelligence, machine learning, intelligent agents, decision-making methods, data analysis and modern intelligent systems. My academic interests include machine learning, reinforcement learning and AI applications in healthcare and biomedical data analysis.",
     featured: true,
   },
 ];
@@ -231,29 +230,6 @@ const achievements = [
     year: "2023",
     title: "Soft Skills Development Certification",
     institution: "Zand Institute of Higher Education",
-  },
-];
-
-const publications = [
-  {
-    status: "Published Conference Paper",
-    year: "2022 / 1401",
-    title:
-      "Early Detection of Forest Fires Using Unmanned Aerial Vehicles and Artificial Intelligence",
-    conference:
-      "7th International Conference on Knowledge and Technology of Electrical Engineering, Computer and Mechanical Engineering of Iran",
-    language: "Persian",
-    documentId: "UTCONF07_133",
-    description:
-      "A research paper proposing the use of unmanned aerial vehicles equipped with artificial intelligence and computer vision capabilities for early smoke and fire detection in forest environments.",
-    keywords: [
-      "Artificial Intelligence",
-      "Computer Vision",
-      "UAV",
-      "Forest Fire Detection",
-      "Crisis Management",
-    ],
-    link: publicLinks.publication,
   },
 ];
 
@@ -532,31 +508,6 @@ export default function App() {
         },
       });
 
-      gsap.from(".publication-card", {
-        y: 42,
-        autoAlpha: 0,
-        duration: 0.82,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: "#research",
-          start: "top 74%",
-          once: true,
-        },
-      });
-
-      gsap.from(".publication-meta", {
-        y: 18,
-        autoAlpha: 0,
-        duration: 0.55,
-        stagger: 0.09,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".publication-card",
-          start: "top 76%",
-          once: true,
-        },
-      });
-
       gsap.from(".project-copy", {
         x: -34,
         autoAlpha: 0,
@@ -709,7 +660,6 @@ export default function App() {
       <EducationSection />
       <ExperienceSection />
       <AchievementsSection />
-      <ResearchSection />
       <ProjectsSection />
       <ContactSection />
       <Footer />
@@ -1596,109 +1546,6 @@ function AchievementsSection() {
         </div>
       </div>
     </section>
-  );
-}
-
-function ResearchSection() {
-  return (
-    <section
-      id="research"
-      className="section-border overflow-hidden px-6 py-24 sm:px-8 lg:py-32"
-    >
-      <div className="mx-auto max-w-6xl">
-        <SectionHeading
-          eyebrow="RESEARCH & PUBLICATIONS"
-          title={
-            <>
-              Exploring ideas through{" "}
-              <span className="purple-gradient-text">academic research.</span>
-            </>
-          }
-          description="Research experience connecting artificial intelligence with practical, real-world challenges."
-        />
-
-        <div className="mt-14">
-          {publications.map((publication) => (
-            <article
-              key={publication.title}
-              className="publication-card overflow-hidden rounded-[32px] border border-violet-400/15 bg-[#090910] p-6 sm:p-8 lg:p-10"
-            >
-              <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
-                <div>
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-violet-400/20 bg-violet-500/10 text-violet-300">
-                    <BookOpen size={25} />
-                  </div>
-
-                  <p className="publication-meta mt-7 text-xs font-semibold tracking-[0.18em] text-violet-300">
-                    {publication.status}
-                  </p>
-
-                  <div className="publication-meta mt-7 space-y-4 text-sm">
-                    <ResearchInfo label="Published" value={publication.year} />
-
-                    <ResearchInfo
-                      label="Language"
-                      value={`${publication.language} Publication`}
-                    />
-
-                    <ResearchInfo
-                      label="Document ID"
-                      value={publication.documentId}
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-2xl font-semibold leading-tight text-white sm:text-3xl">
-                    {publication.title}
-                  </h3>
-
-                  <p className="mt-6 text-sm font-medium leading-7 text-zinc-300 sm:text-base">
-                    {publication.conference}
-                  </p>
-
-                  <p className="mt-6 max-w-3xl text-sm leading-7 text-zinc-400 sm:text-base">
-                    {publication.description}
-                  </p>
-
-                  <div className="mt-8 flex flex-wrap gap-2">
-                    {publication.keywords.map((keyword) => (
-                      <span
-                        key={keyword}
-                        className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-2 text-xs text-zinc-400"
-                      >
-                        {keyword}
-                      </span>
-                    ))}
-                  </div>
-
-                  <a
-                    href={publication.link}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-9 inline-flex items-center gap-2 rounded-xl bg-violet-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-violet-500"
-                  >
-                    View Publication
-                    <ExternalLink size={15} />
-                  </a>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ResearchInfo({ label, value }) {
-  return (
-    <div className="publication-meta border-b border-white/[0.06] pb-4">
-      <p className="text-[10px] font-semibold tracking-[0.16em] text-zinc-500">
-        {label}
-      </p>
-      <p className="mt-2 leading-6 text-zinc-200">{value}</p>
-    </div>
   );
 }
 
